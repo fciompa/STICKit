@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <!-- create new visualization part of activity -->
+    <LinearLayout
+        android:id="@+id/visualization_new"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+		android:background="@drawable/st_new_background_land" 
+		android:baselineAligned="false"
+        android:visibility="gone">
+		
+		<!-- first main row-->
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+	        android:paddingLeft="20dp"
+	        android:paddingBottom="20dp"
+            android:layout_weight="1">
+            
+            <LinearLayout             
+                android:layout_width="fill_parent"
+	            android:layout_height="0dip"
+	            android:orientation="vertical"
+	            android:layout_weight="3">
+                
+		        <LinearLayout
+		            android:layout_width="match_parent"
+		            android:layout_height="0dip"
+		            android:orientation="vertical"
+		            android:layout_weight="1">
+		            
+		            <!-- row with first check signe -->
+		            <TextView 
+		                android:layout_width="fill_parent"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_vertical"
+		                android:paddingTop="20dp"
+		                android:paddingBottom="20dp"
+		                android:textColor="@android:color/white"
+		                android:drawableLeft="@drawable/st_new_check"
+		                android:text="@string/visualization_detail_description_take_background"/>
+		                
+		            <!-- row with take photo or choose from gallery -->
+		            <LinearLayout 
+		                android:layout_width="match_parent"
+		                android:layout_height="fill_parent"
+		                android:baselineAligned="false"
+		                android:orientation="horizontal">
+		                
+		                <LinearLayout 
+		                    android:id="@+id/visualization_new_take_photo_layout" 
+		                    android:layout_width="match_parent"
+		                    android:layout_height="wrap_content"
+		                    android:orientation="horizontal"
+		                    android:gravity="center_horizontal"
+		                    android:layout_weight="1">
+		                    
+					        <ImageButton
+						        android:id="@+id/visualization_new_take_photo"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:background="@drawable/st_new_photo"
+						        android:contentDescription="@string/visualization_detail_description_take_background"/>
+		                </LinearLayout>
+					    
+		                <LinearLayout 
+		                    android:id="@+id/visualization_new_choice_gallery_layout"
+		                    android:layout_width="match_parent"
+		                    android:layout_height="wrap_content"
+		                    android:orientation="horizontal"
+		                    android:gravity="center_horizontal"
+		                    android:layout_weight="1">
+		
+		                    <ImageButton
+						        android:id="@+id/visualization_new_choice_gallery"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:background="@drawable/st_new_gallery"
+						        android:contentDescription="@string/visualization_detail_description_take_background"/>
+						</LinearLayout>
+	
+		                <LinearLayout 
+		                    android:id="@+id/visualization_new_image_backgroubd_layout"
+		                    android:layout_width="fill_parent"
+		                    android:layout_height="fill_parent"
+		                    android:orientation="horizontal"
+		                    android:gravity="center_horizontal"
+		                    android:layout_weight="1"
+		                    android:visibility="gone">
+		                	                					
+			                <ImageView 
+			                    android:id="@+id/visualization_new_image_backgroubd"
+							    android:layout_width="fill_parent"
+							    android:layout_height="fill_parent"
+							    android:contentDescription="@string/visualization_detail_description_background"/>
+				        </LinearLayout>
+				</LinearLayout>
+			</LinearLayout>
+	        
+			<!-- second main row-->
+	    </LinearLayout>
+	            
+		<!-- last main row -->
+	</LinearLayout>
+	<LinearLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical"
+	    android:layout_marginTop="30dp"
+	    android:layout_marginBottom="40dp"
+	    android:background="@drawable/st_new_arrow_land">
+	</LinearLayout>
+<LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+	        android:paddingRight="20dp"
+	        android:paddingBottom="20dp"
+            android:layout_weight="1">
+            
+            <LinearLayout             
+                android:layout_width="fill_parent"
+	            android:layout_height="match_parent"
+	            android:orientation="vertical"
+	            android:layout_weight="3">
+	        
+			<!-- second main row-->
+			<LinearLayout
+				android:layout_width="fill_parent"
+	            android:layout_height="0dip"
+	            android:orientation="vertical"
+	            android:layout_weight="1">
+	            
+	            <!-- row with second check signe -->
+	            <TextView 
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:gravity="center_vertical"
+	                android:paddingTop="20dp"
+	                android:paddingBottom="20dp"
+	                android:textColor="@android:color/white"
+	                android:drawableLeft="@drawable/st_new_check"
+	                android:text="@string/visualization_detail_description_choice_sticker"/>
+	                
+	            <ImageButton
+			        android:id="@+id/visualization_new_choice_sticker"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+			        android:background="@drawable/st_new_sticker"
+			        android:contentDescription="@string/visualization_detail_description_choice_sticker"/>
+	
+				<ImageView
+				    android:id="@+id/visualization_new_image_sticker"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+			        android:visibility="gone"
+			        android:contentDescription="@string/visualization_detail_description_sticker"/>
+	            
+			</LinearLayout>
+	    </LinearLayout>
+	            
+		<!-- last main row -->
+		<LinearLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:gravity="bottom"
+		    android:layout_weight="1">
+			
+		    <Button
+		        android:id="@+id/visualization_new_choice_edit"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/visualization_detail_description_edit"
+		        android:textColor="@android:color/white"
+		        android:gravity="center_vertical"
+		        android:paddingLeft="30dp"
+		        android:background="@drawable/st_new_edit2"/>
+		</LinearLayout>
+	</LinearLayout>        
+    </LinearLayout>
+    
+	<!-- edit part of activity -->
+	<LinearLayout 
+	    android:id="@+id/visualization_edit"
+	    android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+	    
+	    <!-- visualization image and so on -->	    
+	    <RelativeLayout
+	        android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1" >
+	        
+	        <ImageView
+	            android:id="@+id/visualization_edit_panel_image_image"
+	            android:layout_width="fill_parent"
+	            android:layout_height="match_parent"
+	            android:layout_centerInParent="true"
+	            android:contentDescription="@string/visualization_detail_description_image" />
+
+	        <LinearLayout 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:layout_alignParentLeft="true"
+	            android:layout_alignTop="@+id/visualization_edit_panel_image_image">
+	            
+				<EditText
+				    android:id="@+id/visualization_edit_panel_image_name"
+				    android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:enabled="false"
+	                android:inputType="textShortMessage"
+	                android:layout_marginLeft="15dp"
+	                android:maxLines="1"
+	                android:singleLine="true"
+	                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+	                android:textStyle="bold"
+	                android:textColor="@color/st_galery_title_background"
+	                android:contentDescription="@string/visualization_detail_description_name"/>    
+
+				<ImageButton
+				    android:id="@+id/visualization_edit_panel_image_name_ok"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:src="@drawable/accept"
+				    android:contentDescription="@string/visualization_detail_description_name_ok"
+				    android:visibility="gone"/>
+									            	            
+	        </LinearLayout>
+	        	        
+	        		    	
+
+            <EditText
+                android:id="@+id/visualization_edit_panel_image_update_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:inputType="date"
+                android:layout_marginLeft="15dp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textStyle="bold"
+                android:textColor="@color/st_galery_title_background"
+                android:layout_alignParentLeft="true"
+                android:layout_alignBottom="@+id/visualization_edit_panel_image_image"
+                android:contentDescription="@string/visualization_detail_description_update"/>
+            
+		    <!-- visualization color palette -->
+			<LinearLayout
+			    android:id="@+id/visualization_edit_color_palette"
+			    android:layout_width="wrap_content"
+			    android:layout_height="fill_parent"
+			    android:orientation="horizontal"
+			    android:gravity="center_horizontal"
+			    android:baselineAligned="false"
+                android:layout_alignRight="@+id/visualization_edit_panel_image_image"
+                android:visibility="gone">
+	            
+				<LinearLayout 
+				    android:layout_width="40dp"
+				    android:layout_height="fill_parent"
+				    android:orientation="vertical"
+					android:layout_weight="1" >
+			    
+				    <ImageButton
+				        android:id="@+id/color_01"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_01"
+				        android:background="@color/color_01"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_02"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_02"
+				        android:background="@color/color_02"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1"  />
+				
+				    <ImageButton
+				        android:id="@+id/color_03"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_03"
+				        android:background="@color/color_03"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_04"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_04"
+				        android:background="@color/color_04"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				    
+					<ImageButton
+				        android:id="@+id/color_05"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_05"
+				        android:background="@color/color_05"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_06"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_06"
+				        android:background="@color/color_06"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_07"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_07"
+				        android:background="@color/color_08"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_08"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_08"
+				        android:background="@color/color_08"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				    
+				</LinearLayout>
+			
+				<LinearLayout 
+				    android:layout_width="40dp"
+				    android:layout_height="fill_parent"
+				    android:orientation="vertical"
+					android:layout_weight="1" >
+			    
+					<ImageButton
+				        android:id="@+id/color_09"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_09"
+				        android:background="@color/color_09"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_10"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_10"
+				        android:background="@color/color_10"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_11"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_11"
+				        android:background="@color/color_11"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_12"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_12"
+				        android:background="@color/color_12"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+			
+				    <ImageButton
+				        android:id="@+id/color_13"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_13"
+				        android:background="@color/color_13"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_14"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_14"
+				        android:background="@color/color_14"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_15"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_15"
+				        android:background="@color/color_15"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				
+				    <ImageButton
+				        android:id="@+id/color_16"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:src="@color/color_16"
+				        android:background="@color/color_16"
+				        android:contentDescription="@string/visualization_detail_description_color_palette"
+				        android:layout_weight="1" />
+				    
+				</LinearLayout>
+			</LinearLayout>	    
+	    </RelativeLayout>
+
+	    <!-- visualization edit (control) panel -->
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:orientation="vertical"
+	        android:background="@drawable/st_edit_background_land">
+            
+            <!-- horní řada -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:gravity="center"
+	            android:layout_weight="1">
+			
+            	<ImageButton
+	                android:id="@+id/visualization_edit_panel_control_perspective_increase"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:background="@drawable/st_edit_perspective_increase"
+	                android:contentDescription="@string/visualization_detail_description_perspective_decrease"/>
+                
+	            <ImageButton
+	                android:id="@+id/visualization_edit_panel_control_perspective_decrease"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:background="@drawable/st_edit_perspective_decrease"
+	                android:contentDescription="@string/visualization_detail_description_perspective_increase"/>
+                
+	            <ImageButton
+	                android:id="@+id/visualization_edit_panel_control_flip"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:background="@drawable/st_edit_flip"
+	                android:contentDescription="@string/visualization_detail_description_flip"/>
+			</LinearLayout>
+                
+            <!-- prostřední řada -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:gravity="center"
+	            android:background="@drawable/st_edit_circle">
+	            
+                <!-- sipky horni rada -->
+	           <ImageButton
+	                android:id="@+id/visualization_edit_panel_control_up"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:background="@drawable/st_edit_move_up"
+	                android:contentDescription="@string/visualization_detail_description_up"/>
+			
+	             <!-- sipky prostredni rada -->
+	            <LinearLayout
+	                android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:orientation="horizontal">
+	
+	                <ImageButton
+		                android:id="@+id/visualization_edit_panel_control_left"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:background="@drawable/st_edit_move_left"
+		                android:contentDescription="@string/visualization_detail_description_perspective_increase"/>
+		            
+		           <ImageButton
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:background="@drawable/st_edit_empty"
+		                android:contentDescription="@null" />
+		           
+		            <ImageButton
+		                android:id="@+id/visualization_edit_panel_control_right"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:background="@drawable/st_edit_move_right"
+		                android:contentDescription="@string/visualization_detail_description_perspective_decrease"/>
+	            </LinearLayout>			
+			
+				<!-- sipky dolni rada -->
+	           <ImageButton
+	                android:id="@+id/visualization_edit_panel_control_down"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:background="@drawable/st_edit_move_down"
+	                android:contentDescription="@string/visualization_detail_description_down"/>
+            
+			</LinearLayout>
+			
+            <!-- dolní řada-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:gravity="center"
+	            android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/visualization_edit_panel_control_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/st_edit_choice_color"
+                    android:contentDescription="@string/visualization_detail_description_color"/>
+	                
+	            <ImageButton
+	                android:id="@+id/visualization_edit_panel_control_size_increase"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:background="@drawable/st_edit_size_increase"
+	                android:contentDescription="@string/visualization_detail_description_size_increase"/>
+                
+	            <ImageButton
+	                android:id="@+id/visualization_edit_panel_control_size_decrease"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:background="@drawable/st_edit_size_decrease"
+	                android:contentDescription="@string/visualization_detail_description_size_decrease"/>
+	            
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

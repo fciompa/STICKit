@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_new_visualization"
+        android:title="@string/menu_new_visualization"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/new_visualization"/>
+
+    <item
+        android:id="@+id/menu_buy"
+        android:title="@string/menu_send_order"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/accept"/>
+
+    <item
+        android:id="@+id/menu_share"
+        android:title="@string/menu_share"/>
+<!-- 
+    <item
+        android:id="@+id/menu_web_page"
+        android:title="@string/menu_web_page"/>
+ -->
+    <item
+        android:id="@+id/menu_send_question"
+        android:title="@string/menu_send_question"/>
+</menu>

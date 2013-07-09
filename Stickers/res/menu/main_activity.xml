@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_new_visualization"
+        android:title="@string/menu_new_visualization"
+        android:showAsAction="always"
+        android:icon="@drawable/new_visualization"/>
+    
+    <item
+        android:id="@+id/menu_sync"
+        android:title="@string/menu_sync"/>
+        
+    <item
+        android:id="@+id/menu_user_detail"
+        android:title="@string/menu_user_detail"/>
+    
+</menu>

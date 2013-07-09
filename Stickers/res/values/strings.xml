@@ -1,0 +1,87 @@
+<resources>
+
+<!-- ict.ictsystem.stickers     -->
+    <string name="app_name">STICKit</string>
+
+    <string name="menu_sync">Synchronization</string>
+    <string name="menu_user_detail">User info</string>
+	<string name="menu_new_visualization">New visualization</string>    
+    <string name="menu_share">Share</string>
+    <string name="menu_send_question">Send question</string>
+    <string name="menu_send_order">Send order</string>
+    <string name="menu_take_photo">Take photo</string>
+    <string name="menu_choice_photo">Choice photo</string>
+    <string name="menu_choice_sticker">Choice sticker</string>
+	<string name="menu_edit_name">Edit name</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_ok">OK</string>
+    <string name="menu_not_app_capture_image">There is not application for image capturing.</string>
+
+    <string name="page_title_my_wall">My wall</string>
+    <string name="page_title_featured">Featured</string>
+    <string name="page_title_popular">Popular</string>
+    <string name="page_title_new">New</string>
+    <string name="page_title_categories">Categories</string>
+    <string name="page_title_all">All</string>
+	<string name="loading_deals">"Loading data&#8230;"</string>
+	
+    <string name="visualization_detail_description_image">Visualization image</string>
+    <string name="visualization_detail_description_size_increase">Make sticker bigger</string>
+    <string name="visualization_detail_description_size_decrease">Make sticker smaller</string>
+    <string name="visualization_detail_description_name">Short name of created visualization</string>
+	<string name="visualization_detail_description_name_ok">Visualization name confirmation</string>
+    <string name="visualization_detail_description_update">Date of last visualization update</string>
+    <string name="visualization_detail_description_color">Open color palette</string>
+    <string name="visualization_detail_description_color_palette">Choice new color</string>
+    <string name="visualization_detail_description_up">Move stiker up</string>
+    <string name="visualization_detail_description_down">Move sticker down</string>
+    <string name="visualization_detail_description_perspective_increase">Change sticker perspective, turn it to the left</string>
+    <string name="visualization_detail_description_perspective_decrease">Change sticker perspective, turn it to the right</string>
+    <string name="visualization_detail_description_flip">Flip sticker</string>
+    <string name="visualization_detail_description_take_background">Take your background picture</string>
+    <string name="visualization_detail_description_choice_sticker">Choice favorite sticker</string>
+    <string name="visualization_detail_description_edit">Put it together</string>
+	<string name="visualization_detail_description_background">Background of visualization</string>
+	<string name="visualization_detail_description_sticker">Image of sticker</string>
+    	
+	<string name="visualization_detail_new_visualization_name">My new</string>
+		
+	<string name="sticker_description_image">Sticker image</string>
+	<string name="sticker_description_description">Sticker description</string>
+	<string name="sticker_description_name">Sticker name</string>
+	<string name="sticker_description_price_in_czk">Price in CZK</string>
+	<string name="sticker_description_price_in_eur">Price in EUR</string>
+	<string name="sticker_description_color">It is possible to change sticker color</string>
+	<string name="sticker_text_color">Change color</string>
+	<string name="sticker_text_price_czk">Price CZK:</string>
+	<string name="sticker_text_price_eur">Price EUR:</string>
+	<string name="sticker_text_main_button_buy">Buy</string>
+	<string name="sticker_text_main_button_choice">OK</string>
+	<string name="sticker_text_category">Category:</string>
+	<string name="sticker_text_expedation_time">Expedation time:</string>
+	<string name="sticker_text_expedition_time_unit_week">" week"</string>
+
+	<string name="mail_send_to">info@nalepshop.cz</string>
+	<string name="mail_user_info"><Data><![CDATA[ <p>Name: @name<br>Surname: @surname<br>Firm: @firm<br>Address: @address<br>ZIP Code: @zipCode<br>City: @city<br>Phone number: @phone<br>E-mail: @email</p> ]]> </Data> </string>
+		
+	<string name="mail_order_chooser_title">Creating of e-mail with sticker order</string>
+	<string name="mail_order_subject">"Order of Sticker with name: "</string>
+	<string name="mail_order_body">"<p>Hello, I would like to buy a sticker. Get in touch with me please.</p> <ul><li>Dimensions stickers: XY</li><li>Color Stickers: @Color</li><li>Mirrored: Yes/No</li></ul>"</string>
+		
+	<string name="mail_question_chooser_title">Creating of e-mail with sticker question</string>
+	<string name="mail_question_subject">"Question about Sticker with name: "</string>
+	<string name="mail_question_body">"Please insert your question. We will contact you as soon as possible"</string>
+	
+	<string name="user_text_first_name">"First name: "</string>
+	<string name="user_text_surname">"Surname: "</string>
+	<string name="user_text_firm">"Firm: "</string>
+	<string name="user_address">"Address: "</string>
+	<string name="user_zip_code">"ZIP code: "</string>
+	<string name="user_town">"City: "</string>
+	<string name="user_phone_number">"Phone number: "</string>
+	<string name="user_email">"E-mail: "</string>
+	<string name="user_toast_empty_email">Not filled e-mail address!</string>
+	<string name="sticker_share_image">Share Image</string>
+	
+		
+</resources>

@@ -1,0 +1,44 @@
+<resources>
+
+<!-- cz.ictsystem.lib -->
+    <string name="id_column_title">ID</string>
+
+<!-- ict.ictsystem.stickers.data -->
+	<string name="column_id">_id</string>
+	<string name="table_category">Category</string>
+	<string name="table_sticker">Sticker</string>
+	<string name="table_stickercategory">StickerCategory</string>
+	<string name="table_visualization">Visualization</string>
+	<string name="column_category_name_cz">NameCZ</string>
+	<string name="column_category_name_eng">NameENG</string>
+	<string name="column_category_sequence">Sequence</string>
+	<string name="column_sticker_name_cz">NameCZ</string>
+	<string name="column_sticker_name_eng">NameENG</string>
+	<string name="column_sticker_description_cz">DescriptionCZ</string>
+	<string name="column_sticker_description_eng">DescriptionENG</string>
+	<string name="column_sticker_url">Url</string>
+	<string name="column_sticker_priceCZK">PriceCZK</string>
+	<string name="column_sticker_priceEUR">PriceEUR</string>
+	<string name="column_sticker_editable_color">EditColor</string>
+	<string name="column_sticker_expedition_time">ExpeditionTime</string>
+	<string name="column_sticker_featured">Featured</string>
+	<string name="column_sticker_popular">Popular</string>
+	<string name="column_sticker_new">New</string>
+	<string name="column_sticker_image">Image</string>
+	<string name="column_stickercategory_category_id">CategoryId</string>
+	<string name="column_stickercategory_sticker_id">StickerId</string>
+    <string name="column_visualization_name_cz">NameCZ</string>
+    <string name="column_visualization_name_eng">NameENG</string>
+    <string name="column_visualization_create_date">CreateDate</string>
+    <string name="column_visualization_update_date">UpdateDate</string>
+    <string name="column_visualization_url_background">UrlBackground</string>
+    <string name="column_visualization_background">Background</string>
+    <string name="column_visualization_image">Image</string>
+    <string name="column_visualization_sticker_id">StickerId</string>
+    <string name="column_visualization_sticker_position_X">StickerPositionX</string>
+    <string name="column_visualization_sticker_position_Y">StickerPositionY</string>
+	<string name="column_visualization_sticker_size">StickerSize</string>
+    <string name="column_visualization_sticker_color">StickerColor</string>
+    <string name="column_visualization_sticker_perspective">StickerPerspective</string>
+    <string name="column_visualization_sticker_flip">StickerFlip</string>
+</resources>

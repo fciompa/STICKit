@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+        
+		<TextView
+		    android:id="@+id/sticker_name"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:paddingBottom="10dp"
+		    style="@android:style/TextAppearance.DeviceDefault.Large"
+		    android:drawableLeft="@drawable/sticker"
+		    android:text="@string/sticker_description_name"
+		    android:contentDescription="@string/sticker_description_name"/>
+	
+		<ImageView
+		    android:id="@+id/sticker_image"
+		    android:layout_width="fill_parent"
+		    android:layout_height="180dp"
+		    android:layout_gravity="center"
+		    android:gravity="center_horizontal"
+		    android:contentDescription="@string/sticker_description_image"
+		    android:scaleType="centerInside" />
+
+		<TextView
+		    android:id="@+id/sticker_description"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:paddingTop="20dp"
+		    android:paddingBottom="10dp"
+		    android:text="@string/sticker_description_description"
+		    android:contentDescription="@string/sticker_description_description"/>    
+				
+				
+		<LinearLayout
+		    android:id="@+id/sticker_color_palette"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:gravity="center_vertical"
+		    android:visibility="gone">
+
+		    <LinearLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="40dp"
+			    android:orientation="horizontal"
+				android:layout_weight="1" >
+		    
+			    <ImageButton
+			        android:id="@+id/color_01"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_01"
+			        android:background="@color/color_01"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_02"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_02"
+			        android:background="@color/color_02"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1"  />
+			
+			    <ImageButton
+			        android:id="@+id/color_03"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_03"
+			        android:background="@color/color_03"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_04"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_04"
+			        android:background="@color/color_04"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			    
+				<ImageButton
+			        android:id="@+id/color_05"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_05"
+			        android:background="@color/color_05"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_06"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_06"
+			        android:background="@color/color_06"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_07"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_07"
+			        android:background="@color/color_08"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_08"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_08"
+			        android:background="@color/color_08"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			    
+			</LinearLayout>
+		
+			<LinearLayout 
+			    android:layout_width="match_parent"
+			    android:layout_height="40dp"
+			    android:orientation="horizontal"
+				android:layout_weight="1" >
+		    
+				<ImageButton
+			        android:id="@+id/color_09"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_09"
+			        android:background="@color/color_09"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_10"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_10"
+			        android:background="@color/color_10"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_11"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_11"
+			        android:background="@color/color_11"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_12"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_12"
+			        android:background="@color/color_12"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+		
+			    <ImageButton
+			        android:id="@+id/color_13"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_13"
+			        android:background="@color/color_13"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_14"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_14"
+			        android:background="@color/color_14"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_15"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_15"
+			        android:background="@color/color_15"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			
+			    <ImageButton
+			        android:id="@+id/color_16"
+			        android:layout_width="wrap_content"
+			        android:layout_height="match_parent"
+			        android:src="@color/color_16"
+			        android:background="@color/color_16"
+			        android:contentDescription="@string/visualization_detail_description_color_palette"
+			        android:layout_weight="1" />
+			    
+			</LinearLayout>
+		</LinearLayout>	    	
+	
+		<!-- edit color -->
+		<LinearLayout
+		    android:id="@+id/sticker_edit_color_view" 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:gravity="center_vertical"
+		    android:orientation="horizontal">
+	
+		    <ImageButton
+		        android:id="@+id/sticker_edit_color" 
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:background="@drawable/st_edit_choice_color"
+		        android:contentDescription="@string/sticker_description_color"/>
+		        
+			<TextView
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="@string/sticker_text_color"
+			    android:contentDescription="@string/sticker_text_color"/>    
+		</LinearLayout>
+		
+		<!-- bar with prices and button buy -->
+		<LinearLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal">
+		    
+			<LinearLayout 
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:padding="10dp">
+		
+			    <TextView 
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/sticker_text_price_czk"/>
+			        
+				<TextView
+				    android:id="@+id/sticker_priceCZK"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:textIsSelectable="false"
+				    android:contentDescription="@string/sticker_description_price_in_czk"
+				    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
+				
+			</LinearLayout>    
+		    		    
+			<!-- vertical line -->
+			<View
+			    android:layout_width="1dip"
+			    android:layout_height="fill_parent"
+			    android:background="@color/st_galery_title_background"	/>	
+				    		    
+			<LinearLayout 
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:padding="10dp">
+		
+				<TextView 
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/sticker_text_price_eur"/>
+			        
+				<TextView
+				    android:id="@+id/sticker_priceEUR"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:textIsSelectable="false"
+				    android:contentDescription="@string/sticker_description_price_in_eur"
+				    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
+			</LinearLayout>
+
+			<LinearLayout 
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent"
+			    android:orientation="vertical"
+			    android:padding="10dp">
+		
+			    <Button
+			        android:id="@+id/sticker_main_button" 
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:layout_gravity="right"
+			        android:text="@string/sticker_text_main_button_buy"
+			        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+			        android:textColor="@android:color/white"
+			        android:textStyle="bold"
+			        android:contentDescription="@string/sticker_description_color"/>
+			</LinearLayout>
+						
+		</LinearLayout>
+		
+		<!-- Bar with horizontal line -->
+		<ImageView 
+		    android:layout_width="fill_parent"
+		    android:layout_height="20dp"
+		    android:src="@drawable/st_detail_line"
+			android:layerType="software"
+		    android:contentDescription="@null"/>
+		    
+		<!-- bar with category a expiration date -->
+		<LinearLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:baselineAligned="false">
+		    
+			<LinearLayout 
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:layout_weight="1">
+		
+			    <TextView 
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/sticker_text_category"/>
+			        
+				<TextView
+				    android:id="@+id/sticker_category"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:textIsSelectable="false"/>
+				
+			</LinearLayout>    
+		    		    
+			<LinearLayout 
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:layout_weight="1">
+		
+			    <TextView 
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/sticker_text_expedation_time"/>
+			        
+				<TextView
+				    android:id="@+id/sticker_expedition_time"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:textIsSelectable="false"
+				    android:layout_gravity="right"/>
+			</LinearLayout>
+
+		</LinearLayout>
+	
+    </LinearLayout>
+
+</ScrollView>

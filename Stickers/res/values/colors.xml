@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="st_title_page_indicator_up">#FFADD036</color>
+    <color name="st_title_page_indicator_down">#FF93B22A</color>
+    <color name="st_title_page_indicator_text_color">#FF404040</color>
+    
+    <color name="st_galery_title_text_color">#FFFFFFFF</color>
+    <color name="st_galery_title_background">#FF2AC3FF</color>
+    
+    <color name="st_galery_date_background">#FF404040</color>
+    
+    <color name="color_01">#ffffffff</color>
+    <color name="color_02">#ffffea01</color>
+	<color name="color_03">#ffffa200</color>
+    <color name="color_04">#ffff6a06</color>
+    <color name="color_05">#fff43a01</color>
+    <color name="color_06">#fff3328d</color>
+    <color name="color_07">#ffb665dd</color>
+    <color name="color_08">#ffffa2e8</color>
+    <color name="color_09">#ff50b6fe</color>
+    <color name="color_10">#ff14148c</color>
+    <color name="color_11">#ffa5a5a5</color>
+    <color name="color_12">#ff010101</color>
+    <color name="color_13">#ff78251d</color>
+    <color name="color_14">#ffd9bf72</color>
+    <color name="color_15">#ff89e41d</color>
+    <color name="color_16">#ff1a8e2d</color>
+    
+</resources>

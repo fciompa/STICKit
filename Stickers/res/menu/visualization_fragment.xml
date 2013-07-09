@@ -1,0 +1,46 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_choice_sticker"
+        android:title="@string/menu_choice_sticker"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/sticker"/>
+        
+    <item
+        android:id="@+id/menu_take_photo"
+        android:title="@string/menu_take_photo"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/camera"/>
+        
+	<item
+        android:id="@+id/menu_choice_photo"
+        android:title="@string/menu_choice_photo"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/gallery"/>
+        
+    <item
+        android:id="@+id/menu_edit_name"
+        android:title="@string/menu_edit_name"/>
+
+    <item
+        android:id="@+id/menu_delete"
+        android:title="@string/menu_delete"/>
+
+    <item
+        android:id="@+id/menu_share"
+        android:title="@string/menu_share"/>
+
+<!--     
+    <item
+        android:id="@+id/menu_web_page"
+        android:title="@string/menu_web_page"/>
+ -->
+ 
+    <item
+        android:id="@+id/menu_send_question"
+        android:title="@string/menu_send_question"/>
+
+    <item
+        android:id="@+id/menu_send_order"
+        android:title="@string/menu_send_order"/>
+
+</menu>

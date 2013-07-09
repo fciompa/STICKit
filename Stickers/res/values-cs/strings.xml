@@ -1,0 +1,86 @@
+<resources>
+
+<!-- ict.ictsystem.stickers     -->
+    <string name="app_name">STICKit</string>
+
+    <string name="menu_sync">Synchronizovat</string>
+    <string name="menu_user_detail">O uživateli</string>
+	<string name="menu_new_visualization">Nová vizualizace</string>    
+    <string name="menu_share">Sdílet</string>
+    <string name="menu_send_question">Položit dotaz</string>
+    <string name="menu_send_order">Koupit</string>
+    <string name="menu_take_photo">Vyfotit pozadí</string>
+    <string name="menu_choice_photo">Vybrat pozadí</string>
+    <string name="menu_choice_sticker">Výbrat samolepku</string>
+	<string name="menu_edit_name">Upravit název</string>
+    <string name="menu_delete">Odstranit</string>
+    <string name="menu_ok">OK</string>
+    <string name="menu_not_app_capture_image">Nebyla nalezena aplikace fotoaparátu.</string>
+
+    <string name="page_title_my_wall">Moje stěny</string>
+    <string name="page_title_featured">Doporučené</string>
+    <string name="page_title_popular">Populární</string>
+    <string name="page_title_new">Nové</string>
+    <string name="page_title_categories">Kategorie</string>
+    <string name="page_title_all">Vše</string>
+	<string name="loading_deals">"Nahrávání dat&#8230;"</string>
+	
+    <string name="visualization_detail_description_image">Obrázek vizualizace</string>
+    <string name="visualization_detail_description_size_increase">Zvětšení samolepky</string>
+    <string name="visualization_detail_description_size_decrease">Zmenšení samolepky</string>
+    <string name="visualization_detail_description_name">Stručný název vizualiazace</string>
+	<string name="visualization_detail_description_name_ok">Potvrzení názvu vizualizace</string>
+    <string name="visualization_detail_description_update">Datum poslední aktualizace vizualizace</string>
+    <string name="visualization_detail_description_color">Otevření barevné palety</string>
+    <string name="visualization_detail_description_color_palette">Vyběr nové barvy nálepky</string>
+    <string name="visualization_detail_description_up">Posunutí samolepky nahoru</string>
+    <string name="visualization_detail_description_down">Posunutí samolepky dolů</string>
+    <string name="visualization_detail_description_perspective_increase">Změna perspektivy, otočení doleva</string>
+    <string name="visualization_detail_description_perspective_decrease">Změna perspektivy, otočení doprava</string>
+    <string name="visualization_detail_description_flip">Převrácení samolepky</string>
+    <string name="visualization_detail_description_take_background">Vyfotit nebo vybrat pozadí</string>
+    <string name="visualization_detail_description_choice_sticker">Vybrat samolepku</string>
+    <string name="visualization_detail_description_edit">Spojit samolepku s pozadím</string>
+	<string name="visualization_detail_description_background">Pozadí vizualizace</string>
+	<string name="visualization_detail_description_sticker">Obrázek samolepky</string>
+    	
+	<string name="visualization_detail_new_visualization_name">Moje nová</string>
+		
+	<string name="sticker_description_image">Obrázek samolepky</string>
+	<string name="sticker_description_description">Popis samolepky</string>
+	<string name="sticker_description_name">Název samolepky</string>
+	<string name="sticker_description_price_in_czk">Cena v Kč</string>
+	<string name="sticker_description_price_in_eur">Cena EUR</string>
+	<string name="sticker_description_color">Je možné změnit barvu samolepky</string>
+	<string name="sticker_text_color">Změna barvy</string>
+	<string name="sticker_text_price_czk">Cena v Kč:</string>
+	<string name="sticker_text_price_eur">Cena v EUR:</string>
+	<string name="sticker_text_main_button_buy">Koupit</string>
+	<string name="sticker_text_main_button_choice">OK</string>
+	<string name="sticker_text_category">Kategorie:</string>
+	<string name="sticker_text_expedation_time">Doba expedice:</string>
+	<string name="sticker_text_expedition_time_unit_week">" týden"</string>
+
+	<string name="mail_send_to">info@nalepshop.cz</string>
+	<string name="mail_user_info"><Data><![CDATA[ <p>Jméno: @name<br>Příjmení: @surname<br>Firma: @firm<br>Adresa: @address<br>PSČ: @zipCode<br>Město: @city<br>Telefon: @phone<br>E-mail: @email</p> ]]> </Data> </string>		
+	<string name="mail_order_chooser_title">Vytvoření e-mailu s objednávkou samolepky</string>
+	<string name="mail_order_subject">"STICKit - objednávka samolepky "</string>
+	<string name="mail_order_body"><Data><![CDATA[ <!DOCTYPE html><html><body><p>Dobrý den, rád/a bych si koupil/a samolepku. Spojte se se mnou prosím.</p><p>Rozměry samolepky: XY<br>Barva samolepky: @Color<br>Zrcadlové otočení: Ano/Ne</p>@UserInfo</body></html> ]]> </Data> </string>
+	
+	<string name="mail_question_chooser_title">Vytvoření e-mailu s dotazem</string>
+	<string name="mail_question_subject">"STICKit - dotaz k samolepce "</string>
+	<string name="mail_question_body"><Data><![CDATA[ <!DOCTYPE html><html><body><p>Zde prosím vložte text Vašeho dotazu. Ozveme se Vám, co nejdříve.</p>@UserInfo</body></html> ]]> </Data> </string>
+	
+	<string name="user_text_first_name">"Jméno: "</string>
+	<string name="user_text_surname">"Příjmení: "</string>
+	<string name="user_text_firm">"Firma: "</string>
+	<string name="user_address">"Adresa: "</string>
+	<string name="user_zip_code">"PSČ: "</string>
+	<string name="user_town">"Město: "</string>
+	<string name="user_phone_number">"Telefon: "</string>
+	<string name="user_email">"E-mail: "</string>
+	<string name="user_toast_empty_email">Není vyplněna e-mail adresa!</string>
+	<string name="sticker_share_image">Sdílení obrázku</string>
+	
+		
+</resources>

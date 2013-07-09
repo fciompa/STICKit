@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+	<LinearLayout 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:padding="10dp">
+		<!-- email -->
+		<LinearLayout
+	       	android:layout_width="fill_parent"
+			android:layout_height="48dp"
+			android:gravity="center_vertical">
+	
+		    <TextView
+		        android:layout_width="120dp"
+		        android:layout_height="wrap_content"
+		        android:text="@string/user_email"
+		        android:textStyle="bold" />
+
+			<EditText
+	           	android:id="@+id/user_email"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textEmailAddress"/>
+		</LinearLayout>
+	    
+	    <!-- First name -->
+		<LinearLayout
+	       	android:layout_width="fill_parent"
+			android:layout_height="48dp"
+			android:gravity="center_vertical">
+	
+		    <TextView
+		        android:layout_width="120dp"
+		        android:layout_height="wrap_content"
+		        android:text="@string/user_text_first_name"
+		        android:textStyle="bold" />
+	
+			<EditText
+	           	android:id="@+id/user_first_name"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:inputType="text"/>
+			
+		</LinearLayout>
+		
+    	<!-- Surname -->
+		<LinearLayout
+	       	android:layout_width="fill_parent"
+			android:layout_height="48dp"
+			android:gravity="center_vertical">
+	
+		    <TextView
+		        android:layout_width="120dp"
+		        android:layout_height="wrap_content"
+		        android:text="@string/user_text_surname"
+		        android:textStyle="bold" />
+	
+			<EditText
+	           	android:id="@+id/user_surname"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:inputType="text"/>
+					
+		</LinearLayout>
+		
+		<LinearLayout
+	       	android:layout_width="fill_parent"
+			android:layout_height="48dp"
+			android:gravity="center_vertical">
+	
+		    <TextView
+		        android:layout_width="120dp"
+		        android:layout_height="wrap_content"
+		        android:text="@string/user_text_firm"
+		        android:textStyle="bold" />
+	
+			<EditText
+			    android:id="@+id/user_firm"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:inputType="text"/>
+			
+		</LinearLayout>
+		
+		<LinearLayout
+	       	android:layout_width="fill_parent"
+			android:layout_height="48dp"
+			android:gravity="center_vertical">
+	
+		    <TextView
+		        android:layout_width="120dp"
+		        android:layout_height="wrap_content"
+		        android:text="@string/user_address"
+		        android:textStyle="bold" />
+	
+			<EditText
+	           	android:id="@+id/user_address"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:inputType="text"/>
+			
+		</LinearLayout>
+		
+		<LinearLayout
+	       	android:layout_width="fill_parent"
+			android:layout_height="48dp"
+			android:gravity="center_vertical">
+	
+		    <TextView
+		        android:layout_width="120dp"
+		        android:layout_height="wrap_content"
+		        android:text="@string/user_zip_code"
+		        android:textStyle="bold" />
+	
+			<EditText
+			    android:id="@+id/user_zip_code"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:inputType="text"/>
+			
+		</LinearLayout>
+		
+		<LinearLayout
+	       	android:layout_width="fill_parent"
+			android:layout_height="48dp"
+			android:gravity="center_vertical">
+	
+		    <TextView
+		        android:layout_width="120dp"
+		        android:layout_height="wrap_content"
+		        android:text="@string/user_town"
+		        android:textStyle="bold" />
+	
+			<EditText
+			    android:id="@+id/mesto"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:inputType="text"/>
+			
+		</LinearLayout>
+
+		<LinearLayout
+	       	android:layout_width="fill_parent"
+			android:layout_height="48dp"
+			android:gravity="center_vertical">
+	
+		    <TextView
+		        android:layout_width="120dp"
+		        android:layout_height="wrap_content"
+		        android:text="@string/user_phone_number"
+		        android:textStyle="bold" />
+	
+			<EditText
+	           	android:id="@+id/telefon"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:inputType="phone"/>
+			
+		</LinearLayout>
+	</LinearLayout>	
+</ScrollView>

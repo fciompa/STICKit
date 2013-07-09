@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/st_gallery_background">
+
+	<ImageView
+	    android:id="@+id/sticker_image"
+	    android:layout_width="fill_parent"
+	    android:layout_height="@dimen/st_gallery_column_height"
+	    android:scaleType="centerInside"
+	    android:contentDescription="@string/sticker_description_image"/>
+	
+    <TextView
+        android:id="@+id/sticker_name"
+		android:textIsSelectable="false"
+        android:layout_width="@dimen/st_gallery_sticker_title_baground_width"
+        android:layout_height="@dimen/st_gallery_title_baground_hight"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/st_galery_title_text_color"
+        android:textSize="@dimen/st_gallery_title_baground_text_size"
+        android:paddingLeft="@dimen/st_gallery_title_padding_left"
+        android:gravity="left|center_vertical"
+        android:contentDescription="@string/sticker_description_name"/>
+
+</LinearLayout>

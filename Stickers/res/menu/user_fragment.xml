@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_ok"
+        android:title="@string/menu_ok"
+        android:showAsAction="always"
+        android:icon="@drawable/accept"/>
+</menu>

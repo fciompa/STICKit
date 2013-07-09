@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/st_gallery_column_height">
+<!-- 	android:id="@+id/root"
+ -->    
+    <ImageView
+        android:id="@+id/visualization_image"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:scaleType="centerCrop"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true"
+	    android:contentDescription="@string/visualization_detail_description_image"/>
+
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true" >
+        
+	    <TextView
+	        android:id="@+id/visualization_update_date"
+	        android:layout_width="@dimen/st_gallery_date_baground_width"
+	        android:layout_height="@dimen/st_gallery_title_baground_hight"
+	        android:maxLines="1"
+	        android:singleLine="true"
+	        android:textIsSelectable="false"
+	        android:textColor="@color/st_galery_title_text_color"
+	        android:textSize="@dimen/st_gallery_title_baground_text_size"
+	        android:paddingLeft="@dimen/st_gallery_title_padding_left"
+	        android:gravity="left|center_vertical"/>
+        
+	    <TextView
+	        android:id="@+id/visualization_title"
+	        android:layout_width="@dimen/st_gallery_title_baground_width"
+	        android:layout_height="@dimen/st_gallery_title_baground_hight"
+	        android:maxLines="1"
+	        android:singleLine="true"
+	        android:textIsSelectable="false"
+	        android:textColor="@color/st_galery_title_text_color"
+	        android:textSize="@dimen/st_gallery_title_baground_text_size"
+	        android:paddingLeft="@dimen/st_gallery_title_padding_left"
+	        android:gravity="left|center_vertical"/>
+	    </LinearLayout>
+</RelativeLayout>
