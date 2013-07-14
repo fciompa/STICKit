@@ -15,8 +15,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,11 +40,9 @@ import cz.ictsystem.stickers.data.DbProvider;
 import cz.ictsystem.stickers.data.Sticker;
 import cz.ictsystem.stickers.data.User;
 
-public class VisualizationDetailFragment extends SherlockFragment 
-		implements LoaderManager.LoaderCallbacks<Cursor>{
+public class VisualizationDetailFragment extends SherlockFragment{
 
 	private final static String TAG = "VisualizationDetailFragment";
-	private final static int LOADER_ID = 1;
 	private static final int ACTIVITY_REQUEST_CODE_TAKE_PHOTO = 1;
 	private static final int ACTIVITY_REQUEST_CODE_CHOICE_STICKER = 2;
 	private static final int ACTIVITY_REQUEST_CODE_CHOICE_GALLERY = 3;
@@ -101,7 +97,6 @@ public class VisualizationDetailFragment extends SherlockFragment
 	private ImageButton mStickerPerspectiveIncrease;
 	private ImageButton mStickerPerspectiveDecrease;
 	
-	private Visualization mVisualizationNotSaved;
 	private VisualizationBuilder mBuilder;
 	private VisualizationStickerToucher mToucher;
 	private Uri mPhotoFileUri;
@@ -118,8 +113,17 @@ public class VisualizationDetailFragment extends SherlockFragment
     	Log.d(TAG, "onActivityCreated");
     	setHasOptionsMenu(true);
 
-    	mBuilder = new VisualizationBuilder(getActivity(), Utils.getDisplaySize(getActivity()), new Visualization(getArguments().getInt(Const.ARG_ID)));
-    	mVisualizationNotSaved = new Visualization();
+    	//Data loading
+    	Cursor cursor = getActivity().getContentResolver().query(
+				Uri.withAppendedPath(DbProvider.URI_VISUALIZATION, String.valueOf(getArguments().getInt(Const.ARG_ID))),
+				null, null, null, null);
+    	
+    	mBuilder = new VisualizationBuilder(
+    			getActivity(), 
+    			Utils.getDisplaySize(getActivity()), 
+    			new Visualization(getActivity(), cursor));
+		cursor.close();
+
 
     	if(savedInstanceState != null && savedInstanceState.containsKey(Const.ARG_PHOTO_NEW_VISUALIZATION)){
     		mNewVisualization = savedInstanceState.getBoolean(Const.ARG_PHOTO_NEW_VISUALIZATION);
@@ -130,7 +134,7 @@ public class VisualizationDetailFragment extends SherlockFragment
     	}
     	
     	if(savedInstanceState != null && savedInstanceState.containsKey(Const.ARG_NEW_VISUALIZATION_NAME)){
-    		mVisualizationNotSaved.setName(savedInstanceState.getString(Const.ARG_NEW_VISUALIZATION_NAME));
+    		mBuilder.getVisualization().setName(savedInstanceState.getString(Const.ARG_NEW_VISUALIZATION_NAME));
     	}
 
     	mViewNew = getView().findViewById(R.id.visualization_new);
@@ -209,10 +213,6 @@ public class VisualizationDetailFragment extends SherlockFragment
 			}
 		});
     	
-    	//zooming
-		PhotoViewAttacher attacher = new PhotoViewAttacher(mImage);
-		attacher.zoomTo((float) 1.2, 0, 0);
-		
     	//edit image part
     	if(savedInstanceState != null && savedInstanceState.containsKey(Const.ARG_NEW_VISUALIZATION_NAME)){
     		setEditNameEnable();
@@ -421,9 +421,14 @@ public class VisualizationDetailFragment extends SherlockFragment
 				return true;
 			}
 		});
+    	
+    	//zooming
+		PhotoViewAttacher attacher = new PhotoViewAttacher(mImage);
+		attacher.zoomTo((float) 1.2, 0, 0);
+		
+		setVisibility(isNewVisualization());
 
     	getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-    	getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     private void onChangeColor(int colorIdResource) {
@@ -432,7 +437,7 @@ public class VisualizationDetailFragment extends SherlockFragment
 		mViewColorPalette.setVisibility(View.GONE);
     }
 
-	private void save() {
+	private void saveIntoDatabase() {
 		if(mBuilder.getVisualization().getId() != 0){
 			mBuilder.getVisualization().setImage(mBuilder.get()).save(getActivity());
         	Utils.mVisualizationCache.remove(mBuilder.getVisualization().getId());
@@ -544,36 +549,7 @@ public class VisualizationDetailFragment extends SherlockFragment
     	}
     }
 
-    public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    	return new CursorLoader(getActivity(), 
-				Uri.withAppendedPath(DbProvider.URI_VISUALIZATION, String.valueOf(mBuilder.getVisualization().getId())), 
-				null, null, null, null);
-	}
-
-	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		Log.d(TAG, "onLoadFinished");
-		if(cursor.getCount() == 1){
-			mBuilder.setVisualization(getActivity(), cursor);
-			if(mVisualizationNotSaved.getBackground() != null){
-				mBuilder.getVisualization().setBackground(mVisualizationNotSaved.getBackground());
-			}
-			
-			if(mVisualizationNotSaved.getStickerId() != 0){
-				mBuilder.setSticker(new Sticker(getActivity(), mVisualizationNotSaved.getStickerId()));
-			}
-			
-			if(!getNewVisualization()){
-				//edit
-				setVisibility(false);
-				
-			} else {
-				//new
-				setVisibility(true);
-			}
-		}
-	}
-
-	protected boolean getNewVisualization() {
+	protected boolean isNewVisualization() {
 		mNewVisualization =
 				mNewVisualization ||
 				mBuilder.getSticker().getId() == 0 || 
@@ -585,11 +561,11 @@ public class VisualizationDetailFragment extends SherlockFragment
 		mViewEdit.setVisibility(newVisualization ? View.GONE : View.VISIBLE);
 		mViewNew.setVisibility(newVisualization ? View.VISIBLE : View.GONE);
 		
-		if(!newVisualization){
-			setEditVisualizationImage();
-		} else {
+		if(newVisualization){
 			setNewVisualizationBackground();
 			setNewVisualizationSticker();
+		} else {
+			setEditVisualizationImage();
 		}
 	}
 
@@ -623,11 +599,9 @@ public class VisualizationDetailFragment extends SherlockFragment
 	private void onChangeSticker(Intent intent){
 		int stickerId = intent.getExtras().getInt(Const.ARG_ID);
 		Sticker sticker = new Sticker (getActivity(), stickerId);
-		mVisualizationNotSaved.setStickerId(sticker.getId());
 		mBuilder.setSticker(sticker);
-		save(); 
 		mStickerColor.setEnabled(sticker.getEditableColor());
-		if(!getNewVisualization()){
+		if(!isNewVisualization()){
 			new VisualizationImageAsyn(mImage).load(mBuilder);
 		} else {
 			setNewVisualizationSticker();
@@ -635,7 +609,7 @@ public class VisualizationDetailFragment extends SherlockFragment
 	}
 	
 	private void setEditVisualizationImage(){
-		mName.setText(String.valueOf(mVisualizationNotSaved.getName() == null ? mBuilder.getVisualization().getName() : mVisualizationNotSaved.getName()));
+		mName.setText(String.valueOf(mBuilder.getVisualization().getName()));
 		mUpdateDate.setText(DateFormat.getDateInstance().format(mBuilder.getVisualization().getUpdateDate()));
 		mStickerColor.setEnabled(mBuilder.getSticker().getEditableColor());
 		new VisualizationImageAsyn(mImage).load(mBuilder);
@@ -683,12 +657,18 @@ public class VisualizationDetailFragment extends SherlockFragment
 	}
 	
 	private void onChoiceGallery(Intent intent){
+		String selectedImagePath = "";
 		Uri selectedImageUri = intent.getData();
-	    String[] projection = { MediaStore.Images.Media.DATA };
-	    Cursor cursor = getActivity().getContentResolver().query(selectedImageUri, projection, null, null, null);
-	    cursor.moveToFirst();
-		String selectedImagePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
-		
+		if(selectedImageUri.getScheme().equals("content")){
+		    String[] projection = { MediaStore.Images.Media.DATA };
+		    Cursor cursor = getActivity().getContentResolver().query(selectedImageUri, projection, null, null, null);
+		    cursor.moveToFirst();
+			selectedImagePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+		} else if (selectedImageUri.getScheme().equals("file")){
+			selectedImagePath = selectedImageUri.getPath();
+		} else {
+			Toast.makeText(getActivity(), "Unknown background source type", Toast.LENGTH_LONG).show();
+		}
 		onChangeBackground(selectedImagePath);		
 	}
 
@@ -698,10 +678,8 @@ public class VisualizationDetailFragment extends SherlockFragment
 				Utils.getBlobJPEG(Utils.getBitmapFromFile(selectedImagePath,
 				Utils.getDisplaySize(getActivity()).x,
 				Utils.getDisplaySize(getActivity()).y));
-		mVisualizationNotSaved.setBackground(background);
 		mBuilder.getVisualization().setBackground(background);
-		save();
-		if(!getNewVisualization()){
+		if(!isNewVisualization()){
 			new VisualizationImageAsyn(mImage).load(mBuilder);
 		} else {
 			setNewVisualizationBackground();
@@ -751,12 +729,12 @@ public class VisualizationDetailFragment extends SherlockFragment
 		if(getEditNameEnable()){
 			outState.putString(Const.ARG_NEW_VISUALIZATION_NAME, mName.getText().toString());
 		}
-		save();
+		saveIntoDatabase();
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
-		save();
+		saveIntoDatabase();
 	}
 }

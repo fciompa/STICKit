@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,6 +29,7 @@ import android.view.Display;
 import android.view.WindowManager;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.google.gdata.data.spreadsheet.ListEntry;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 
@@ -268,6 +270,25 @@ public class Utils {
 
 	public static boolean isCZ() {
 		return Locale.getDefault().getDisplayLanguage().equals("èeština");
+	}
+	
+	public static HashMap<String, String> getElements(ListEntry entry) {
+		HashMap<String, String> elements = new HashMap<String, String>();
+		elements.put("_id", entry.getTitle().getPlainText());
+		String elementsWithSeparators = "";
+		for (String str : entry.getPlainTextContent().replaceAll("https:", "https").split(":")){
+			int indexOfLastComma = str.lastIndexOf(","); 
+			if ( indexOfLastComma != -1){
+				elementsWithSeparators = elementsWithSeparators + str.substring(0, indexOfLastComma) + "~" + str.substring(indexOfLastComma+1);
+			} else {
+				elementsWithSeparators = elementsWithSeparators + str;
+			}
+			elementsWithSeparators = elementsWithSeparators + ":";
+		}
+		for (String str : elementsWithSeparators.split("~")){
+			elements.put(str.split(":")[0].trim(), str.split(":")[1].replaceAll("https", "https:").trim());
+		}
+		return elements;
 	}
 	
 }

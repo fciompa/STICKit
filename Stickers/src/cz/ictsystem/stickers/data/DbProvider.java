@@ -149,10 +149,12 @@ public class DbProvider extends ContentProvider {
 				break;
 			case URI_ID_STICKER:
 				rowID = mDb.insertSticker(values);
-				newUri = ContentUris.withAppendedId(URI_FEATURED_STICKERS_BY_CATEGORY, rowID);//ContentUris.withAppendedId(URI_STICKER, rowID);
+				notiffyChangeAllCategoryGallery(rowID);
+				newUri = ContentUris.withAppendedId(URI_STICKER, rowID);
 				break;
 			case URI_ID_STICKER_CATEGORY:
 				rowID = mDb.insertStickerCategory(values);
+				notiffyChangeAllCategoryGallery(rowID);
 				newUri = ContentUris.withAppendedId(URI_STICKER_CATEGORY, rowID);
 				break;
 			case URI_ID_VISUALIZATION:
@@ -169,6 +171,18 @@ public class DbProvider extends ContentProvider {
         
         getContext().getContentResolver().notifyChange(newUri, null);
         return newUri;
+	}
+
+	private void notiffyChangeAllCategoryGallery(long rowID) {
+		getContext().getContentResolver().notifyChange(ContentUris.withAppendedId(URI_FEATURED_STICKERS_BY_CATEGORY, rowID), null);
+		getContext().getContentResolver().notifyChange(ContentUris.withAppendedId(URI_POPULAR_STICKER_BY_CATEGORY, rowID), null);
+		getContext().getContentResolver().notifyChange(ContentUris.withAppendedId(URI_NEW_STICKERS_BY_CATEGORY, rowID), null);
+		getContext().getContentResolver().notifyChange(ContentUris.withAppendedId(URI_STICKERS_BY_CATEGORY, rowID), null);
+		
+		getContext().getContentResolver().notifyChange(ContentUris.withAppendedId(URI_STICKER, rowID), null);
+		getContext().getContentResolver().notifyChange(ContentUris.withAppendedId(URI_FEATURED_STICKER, rowID), null);
+		getContext().getContentResolver().notifyChange(ContentUris.withAppendedId(URI_POPULAR_STICKER, rowID), null);
+		getContext().getContentResolver().notifyChange(ContentUris.withAppendedId(URI_NEW_STICKER, rowID), null);
 	}
 
 	@Override

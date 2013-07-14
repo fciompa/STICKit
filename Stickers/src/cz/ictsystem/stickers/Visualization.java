@@ -1,6 +1,8 @@
 package cz.ictsystem.stickers;
 
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Locale;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -10,9 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-
-import com.google.gdata.data.spreadsheet.ListEntry;
-
 import cz.ictsystem.stickers.data.DbProvider;
 import cz.ictsystem.stickers.data.DbStickers;
 
@@ -143,24 +142,24 @@ public class Visualization {
 		mFliped = fliped;
 	}
 	
-	public Visualization(Context context, ListEntry entry){
-		mId = Integer.valueOf(entry.getCustomElements().getValue("id"));
-		mNameCZ = entry.getCustomElements().getValue(context.getString(R.string.column_visualization_name_cz));
-		mNameENG = entry.getCustomElements().getValue(context.getString(R.string.column_visualization_name_eng));
-		mCreateDate = Date.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_visualization_create_date)));
-		mUpdateDate = Date.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_visualization_update_date)));
+	public Visualization(Context context, HashMap<String, String> elements){
+		mId = Integer.valueOf(elements.get(context.getString(R.string.column_id).toLowerCase(Locale.US)));
+		mNameCZ = elements.get(context.getString(R.string.column_visualization_name_cz).toLowerCase(Locale.US));
+		mNameENG = elements.get(context.getString(R.string.column_visualization_name_eng).toLowerCase(Locale.US));
+		mCreateDate = Date.valueOf(elements.get(context.getString(R.string.column_visualization_create_date).toLowerCase(Locale.US)));
+		mUpdateDate = Date.valueOf(elements.get(context.getString(R.string.column_visualization_update_date).toLowerCase(Locale.US)));
 		
-		mUrl = entry.getCustomElements().getValue(context.getString(R.string.column_visualization_url_background));
+		mUrl = elements.get(context.getString(R.string.column_visualization_url_background).toLowerCase(Locale.US));
 		mBackground = null;
 		mImage = null;
 		
-		mStickerId = Integer.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_visualization_sticker_id)));
-		mX = Integer.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_visualization_sticker_position_X)));
-		mY = Integer.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_visualization_sticker_position_Y)));
-		mSize = Integer.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_visualization_sticker_size)));
-		mColor = Integer.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_visualization_sticker_color)));
-		mPerspective = Integer.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_visualization_sticker_perspective)));
-		mFliped = Boolean.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_visualization_sticker_flip)));
+		mStickerId = Integer.valueOf(elements.get(context.getString(R.string.column_visualization_sticker_id).toLowerCase(Locale.US)));
+		mX = Integer.valueOf(elements.get(context.getString(R.string.column_visualization_sticker_position_X).toLowerCase(Locale.US)));
+		mY = Integer.valueOf(elements.get(context.getString(R.string.column_visualization_sticker_position_Y).toLowerCase(Locale.US)));
+		mSize = Integer.valueOf(elements.get(context.getString(R.string.column_visualization_sticker_size).toLowerCase(Locale.US)));
+		mColor = Integer.valueOf(elements.get(context.getString(R.string.column_visualization_sticker_color).toLowerCase(Locale.US)));
+		mPerspective = Integer.valueOf(elements.get(context.getString(R.string.column_visualization_sticker_perspective).toLowerCase(Locale.US)));
+		mFliped = Boolean.valueOf(elements.get(context.getString(R.string.column_visualization_sticker_flip).toLowerCase(Locale.US)));
 	}
 
 	public Visualization(Context context, Cursor cursor){

@@ -1,10 +1,10 @@
 package cz.ictsystem.stickers.data;
 
+import java.util.HashMap;
+import java.util.Locale;
+
 import android.content.ContentValues;
 import android.content.Context;
-
-import com.google.gdata.data.spreadsheet.ListEntry;
-
 import cz.ictsystem.stickers.R;
 
 public class StickerCategory {
@@ -18,10 +18,10 @@ public class StickerCategory {
 		mStickerId = stickerId;
 	}
 
-	public StickerCategory(Context context, ListEntry entry){
-		mId = Integer.valueOf(entry.getCustomElements().getValue("id"));
-		mCategoryId = Integer.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_stickercategory_category_id)));
-		mStickerId = Integer.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_stickercategory_sticker_id)));
+	public StickerCategory(Context context, HashMap<String, String> elements){
+		mId = Integer.valueOf(elements.get(context.getString(R.string.column_id).toLowerCase(Locale.US)));
+		mCategoryId = Integer.valueOf(elements.get(context.getString(R.string.column_stickercategory_category_id).toLowerCase(Locale.US)));
+		mStickerId = Integer.valueOf(elements.get(context.getString(R.string.column_stickercategory_sticker_id).toLowerCase(Locale.US)));
 	}
 
 	public int getId() {

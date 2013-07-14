@@ -19,22 +19,17 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.google.common.io.ByteStreams;
-import com.google.gdata.client.spreadsheet.FeedURLFactory;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
-import com.google.gdata.data.BaseEntry;
-import com.google.gdata.data.ParseSource;
 import com.google.gdata.data.spreadsheet.ListEntry;
 import com.google.gdata.data.spreadsheet.ListFeed;
-import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
-import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
 import com.google.gdata.util.ServiceException;
 
 import cz.ictsystem.stickers.R;
 import cz.ictsystem.stickers.Utils;
-import cz.ictsystem.stickers.VisualizationBuilder;
 import cz.ictsystem.stickers.Visualization;
+import cz.ictsystem.stickers.VisualizationBuilder;
 
 public class SyncService extends Service {
 
@@ -58,53 +53,23 @@ public class SyncService extends Service {
         Context context = getApplicationContext();
         try {
 			SpreadsheetService service = new SpreadsheetService(context.getString(R.string.app_name));
-//	    	service.setUserCredentials("frantisek.ciompa@gmail.com", "fc8729");
-//			service.setUserCredentials("app.nalepshop@gmail.com", "nalep258shop");
-			service.setUserCredentials(getString(R.string.web_user_login), getString(R.string.web_user_password));
-	    	FeedURLFactory factory = FeedURLFactory.getDefault();
-			SpreadsheetFeed feed = service.getFeed(factory.getSpreadsheetsFeedUrl(), SpreadsheetFeed.class);
-	
-			
-			
-//			URL feedUrl= new URL ("https://docs.google.com/spreadsheet/ccc?key=0ApDWMw1Qm1g_dFJKaTBBQkVUbzk1aE9CT1pXMHBoVXc&usp=sharing");
-//			URL feedUrl= new URL ("https://docs.google.com/spreadsheet/pub?key=0ApDWMw1Qm1g_dFJKaTBBQkVUbzk1aE9CT1pXMHBoVXc");
-			//https://spreadsheets.google.com/feeds/worksheets/0ApDWMw1Qm1g_dFJKaTBBQkVUbzk1aE9CT1pXMHBoVXc/public/basic
-			//https://spreadsheets.google.com/feeds/worksheets/key/private/basic
-//			URL feedUrl= new URL ("https://spreadsheets.google.com/feeds/worksheets/0ApDWMw1Qm1g_dFJKaTBBQkVUbzk1aE9CT1pXMHBoVXc/public/basic");
-//			WorksheetFeed feed= service.getFeed (feedUrl, WorksheetFeed.class);
-//			List<WorksheetEntry> worksheets = feed.getEntries();
-//			for(WorksheetEntry worksheetEntry : worksheets){
-//				ListFeed listFeed = service.getFeed(worksheetEntry.getListFeedUrl(), ListFeed.class);
-//				if(worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_category))){
-//					importCategory(listFeed);
-//				} else if (worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_sticker))){
-//					importSticker(listFeed);
-//				} else if (worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_stickercategory))){
-//					importStickerCategory(listFeed);
-//				} else if(worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_visualization))){
-//					importVisualization(listFeed);
-//				}
-//			}
-			
-			
-			List<SpreadsheetEntry> spreadsheets = feed.getEntries();
-			for (SpreadsheetEntry spreadsheet : spreadsheets) {
-				if(spreadsheet.getTitle().getPlainText().equals(context.getString(R.string.app_name))){
-					for(WorksheetEntry worksheetEntry : spreadsheet.getWorksheets()){
-						ListFeed listFeed = service.getFeed(worksheetEntry.getListFeedUrl(), ListFeed.class);
-						if(worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_category))){
-							importCategory(listFeed);
-						} else if (worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_sticker))){
-							importSticker(listFeed);
-						} else if (worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_stickercategory))){
-							importStickerCategory(listFeed);
-						} else if(worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_visualization))){
-							importVisualization(listFeed);
-						}
-					}
-					break;
+			URL feedUrl= new URL ("https://spreadsheets.google.com/feeds/worksheets/0Auy9E6-b8VKtdGt4c25uUkM5ME5Lc0llZWZ2SVYxR3c/public/basic");
+			WorksheetFeed feed= service.getFeed (feedUrl, WorksheetFeed.class);
+			List<WorksheetEntry> worksheets = feed.getEntries();
+			for(WorksheetEntry worksheetEntry : worksheets){
+				ListFeed listFeed = service.getFeed(worksheetEntry.getListFeedUrl(), ListFeed.class);
+				if(worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_category))){
+					importCategory(listFeed);
+				} else if (worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_sticker))){
+					importSticker(listFeed);
+				} else if (worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_stickercategory))){
+					importStickerCategory(listFeed);
+				} else if(worksheetEntry.getTitle().getPlainText().equals(context.getString(R.string.table_visualization))){
+					importVisualization(listFeed);
 				}
 			}
+			
+			
 			Utils.setFirstSynchroDone(getApplicationContext());		
         } catch (ServiceException e) {
 			e.printStackTrace();
@@ -117,7 +82,7 @@ public class SyncService extends Service {
 	private void importCategory(ListFeed listFeed){
         for (ListEntry entry : listFeed.getEntries()) {
         	ContentResolver contentResolver = getContentResolver();
-        	ContentValues category = new Category(getApplicationContext(), entry).getCategory(getApplicationContext());
+        	ContentValues category = new Category(getApplicationContext(), Utils.getElements(entry)).getCategory(getApplicationContext());
         	String id = category.getAsString(getApplicationContext().getString(R.string.column_id));
         	Cursor cursor = contentResolver.query(Uri.withAppendedPath(DbProvider.URI_CATEGORY, id), 
         			null, null, null, null); 
@@ -133,7 +98,7 @@ public class SyncService extends Service {
 	private void importSticker(ListFeed listFeed){
 		for (ListEntry entry : listFeed.getEntries()) {
         	ContentResolver contentResolver = getContentResolver();
-        	Sticker sticker = new Sticker(getApplicationContext(), entry);
+        	Sticker sticker = new Sticker(getApplicationContext(), Utils.getElements(entry));
         	sticker.setImage(downloadImage(sticker.getUrl()));
         	String id = String.valueOf(sticker.getId());
         	Cursor cursor = contentResolver.query(Uri.withAppendedPath(DbProvider.URI_STICKER, id), 
@@ -150,7 +115,7 @@ public class SyncService extends Service {
 	private void importStickerCategory(ListFeed listFeed){
         for (ListEntry entry : listFeed.getEntries()) {
         	ContentResolver contentResolver = getContentResolver();
-        	ContentValues stickerCategory = new StickerCategory(getApplicationContext(), entry).getStickerCategory(getApplicationContext());
+        	ContentValues stickerCategory = new StickerCategory(getApplicationContext(), Utils.getElements(entry)).getStickerCategory(getApplicationContext());
         	String id = stickerCategory.getAsString(getApplicationContext().getString(R.string.column_id));
         	Cursor cursor = contentResolver.query(Uri.withAppendedPath(DbProvider.URI_STICKER_CATEGORY, id), 
         			null, null, null, null); 
@@ -166,7 +131,7 @@ public class SyncService extends Service {
 	private void importVisualization(ListFeed listFeed){
 		if(Utils.getFirstSynchro(getApplicationContext())){
 	        for (ListEntry entry : listFeed.getEntries()) {
-	        	Visualization visualization = new Visualization(getApplicationContext(), entry);
+	        	Visualization visualization = new Visualization(getApplicationContext(), Utils.getElements(entry));
 	        	visualization.setBackground(downloadImage(visualization.getUrl()));
 	        	visualization.setImage(
 	        			new VisualizationBuilder(

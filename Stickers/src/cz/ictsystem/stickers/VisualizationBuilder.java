@@ -101,7 +101,7 @@ public class VisualizationBuilder {
 	
 	private void changeSize(int index) {
 		int newSize = mVisualization.getSize() + index * 100 / STEPS_NUMBER;
-		if(newSize >= 10 && newSize <= 100){
+		if(newSize >= 10 && newSize <= 200){
 			mVisualization.setSize(newSize);
 		}
 	}
@@ -120,7 +120,7 @@ public class VisualizationBuilder {
 		int yStemp = 100/STEPS_NUMBER;
 		int newY = mVisualization.getY() + index * yStemp;
 		if((index == 1 && newY <= 100) ||
-				(index == -1 && newY >= 0)){
+				(index == -1 && newY >= -100)){
 			mVisualization.setY(newY);
 		}
 	}
@@ -139,7 +139,7 @@ public class VisualizationBuilder {
 		int xStemp = 100/STEPS_NUMBER;
 		int newX = mVisualization.getX() + index * xStemp;
 		if((index == 1 && newX  <= 100) ||
-				(index == -1 && newX >= 0)){
+				(index == -1 && newX >= -100)){
 			mVisualization.setX(newX);
 		}
 	}

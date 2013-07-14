@@ -1,12 +1,12 @@
 package cz.ictsystem.stickers.data;
 
+import java.util.HashMap;
+import java.util.Locale;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-
-import com.google.gdata.data.spreadsheet.ListEntry;
-
 import cz.ictsystem.stickers.R;
 import cz.ictsystem.stickers.Utils;
 
@@ -54,24 +54,24 @@ public class Sticker {
 		mUrl = url;
 	}
 
-	public Sticker(Context context, ListEntry entry){
-		mId = Integer.valueOf(entry.getCustomElements().getValue("id"));
-		mNameCZ = entry.getCustomElements().getValue(context.getString(R.string.column_sticker_name_cz));
-		mNameENG = entry.getCustomElements().getValue(context.getString(R.string.column_sticker_name_eng));
-		mDescriptionCZ = entry.getCustomElements().getValue(context.getString(R.string.column_sticker_description_cz));
-		mDescriptionENG = entry.getCustomElements().getValue(context.getString(R.string.column_sticker_description_eng));
-		String img = entry.getCustomElements().getValue(context.getString(R.string.column_sticker_image)); 
-		mImage = img == null ? null : img.getBytes();
-		String priceCZK = entry.getCustomElements().getValue(context.getString(R.string.column_sticker_priceCZK));
+	public Sticker(Context context, HashMap<String, String> elements){
+		mId = Integer.valueOf(elements.get(context.getString(R.string.column_id).toLowerCase(Locale.US)));
+		mNameCZ = elements.get(context.getString(R.string.column_sticker_name_cz).toLowerCase(Locale.US));
+		mNameENG = elements.get(context.getString(R.string.column_sticker_name_eng).toLowerCase(Locale.US));
+		mDescriptionCZ = elements.get(context.getString(R.string.column_sticker_description_cz).toLowerCase(Locale.US));
+		mDescriptionENG = elements.get(context.getString(R.string.column_sticker_description_eng).toLowerCase(Locale.US));
+//		String img = entry.getCustomElements().getValue(context.getString(R.string.column_sticker_image)); 
+//		mImage = img == null ? null : img.getBytes();
+		String priceCZK = elements.get(context.getString(R.string.column_sticker_priceCZK).toLowerCase(Locale.US));
 		mPriceCZK = Float.valueOf(priceCZK.replace(",", "."));
-		String priceEUR = entry.getCustomElements().getValue(context.getString(R.string.column_sticker_priceEUR)); 
+		String priceEUR = elements.get(context.getString(R.string.column_sticker_priceEUR).toLowerCase(Locale.US)); 
 		mPriceEUR = Float.valueOf(priceEUR.replace(",", "."));
-		mExpeditionTime = entry.getCustomElements().getValue(context.getString(R.string.column_sticker_expedition_time));
-		mEditableColor = Boolean.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_sticker_editable_color)));
-		mFeatured = Boolean.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_sticker_featured)));
-		mPopular = Boolean.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_sticker_popular)));
-		mNew = Boolean.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_sticker_new)));
-		mUrl = entry.getCustomElements().getValue(context.getString(R.string.column_sticker_url));
+		mExpeditionTime = elements.get(context.getString(R.string.column_sticker_expedition_time).toLowerCase(Locale.US));
+		mEditableColor = Boolean.valueOf(elements.get(context.getString(R.string.column_sticker_editable_color).toLowerCase(Locale.US)));
+		mFeatured = Boolean.valueOf(elements.get(context.getString(R.string.column_sticker_featured).toLowerCase(Locale.US)));
+		mPopular = Boolean.valueOf(elements.get(context.getString(R.string.column_sticker_popular).toLowerCase(Locale.US)));
+		mNew = Boolean.valueOf(elements.get(context.getString(R.string.column_sticker_new).toLowerCase(Locale.US)));
+		mUrl = elements.get(context.getString(R.string.column_sticker_url).toLowerCase(Locale.US));
 	}
 
 	public Sticker (Context context, int id){

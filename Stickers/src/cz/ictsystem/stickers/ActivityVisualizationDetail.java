@@ -17,7 +17,7 @@ public class ActivityVisualizationDetail extends SherlockFragmentActivity {
         getSupportActionBar().setTitle(null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		if(getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG)  == null){
+        if(getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG)  == null){
 			Bundle args = new Bundle();
 			args.putInt(Const.ARG_ID, getIntent().getExtras().getInt(Const.ARG_ID));
 			
@@ -50,4 +50,5 @@ public class ActivityVisualizationDetail extends SherlockFragmentActivity {
     	setResult(RESULT_OK, getIntent());
     	finish();
     }
+    
 }

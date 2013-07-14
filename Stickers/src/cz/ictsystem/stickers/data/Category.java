@@ -1,11 +1,12 @@
 package cz.ictsystem.stickers.data;
 
+import java.util.HashMap;
+import java.util.Locale;
+
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-
-import com.google.gdata.data.spreadsheet.ListEntry;
-
 import cz.ictsystem.stickers.R;
 
 public class Category {
@@ -21,13 +22,14 @@ public class Category {
 		mSequence = sequence;
 	}
 	
-	public Category(Context context, ListEntry entry){
-		mId = Integer.valueOf(entry.getCustomElements().getValue("id"));
-		mNameCZ = entry.getCustomElements().getValue(context.getString(R.string.column_category_name_cz));
-		mNameENG = entry.getCustomElements().getValue(context.getString(R.string.column_category_name_eng));
-		mSequence = Integer.valueOf(entry.getCustomElements().getValue(context.getString(R.string.column_category_sequence)));
+	@SuppressLint("DefaultLocale")
+	public Category(Context context, HashMap<String, String> elements){
+		mId = Integer.valueOf(elements.get(context.getString(R.string.column_id).toLowerCase(Locale.US)));
+		mNameCZ = elements.get(context.getString(R.string.column_category_name_cz).toLowerCase(Locale.US));
+		mNameENG = elements.get(context.getString(R.string.column_category_name_eng).toLowerCase(Locale.US));
+		mSequence = Integer.valueOf(elements.get(context.getString(R.string.column_category_sequence).toLowerCase(Locale.US)));
 	}
-	
+
 	public Category(Cursor cursor){
 		mId = cursor.getInt(cursor.getColumnIndex(DbStickers.getColumnName(R.string.table_category, R.string.column_id)));
 		mNameCZ = cursor.getString(cursor.getColumnIndex(DbStickers.getColumnName(R.string.table_category, R.string.column_category_name_cz)));

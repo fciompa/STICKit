@@ -9,7 +9,7 @@
         android:id="@+id/menu_buy"
         android:title="@string/menu_send_order"
         android:showAsAction="ifRoom"
-        android:icon="@drawable/accept"/>
+        android:icon="@drawable/buy"/>
 
     <item
         android:id="@+id/menu_share"

@@ -36,7 +36,7 @@ public class Const {
     
 	public static final int MAIL_TYPE_ORDER = 0;
 	public static final int MAIL_TYPE_QUESTION = 1;
-	public static final String FILE_PREFIX = "visuaization";
+	public static final String FILE_PREFIX = "visualization";
 	public static final String FILE_SUFFIX_JPG = ".jpg";
 	public static final String FILE_SUFFIX_PNG = ".png";
 
