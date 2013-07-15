@@ -5,6 +5,7 @@
 
     <string name="menu_sync">Synchronizovat</string>
     <string name="menu_user_detail">O uživateli</string>
+    <string name="menu_about">O aplikaci</string>
 	<string name="menu_new_visualization">Nová vizualizace</string>    
     <string name="menu_share">Sdílet</string>
     <string name="menu_send_question">Položit dotaz</string>
@@ -82,5 +83,6 @@
 	<string name="user_toast_empty_email">Není vyplněna e-mail adresa!</string>
 	<string name="sticker_share_image">Sdílení obrázku</string>
 	
-		
+	<string name="crash_toast_text">Aplikace havarovala, vývojový tým se omlouvá a ocení poslání trasovacího logu mailem. Vývojový tým děkuje předem.</string>
+			
 </resources>

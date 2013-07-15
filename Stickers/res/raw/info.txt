@@ -1,0 +1,7 @@
+<h3>STICKit</h3>
+Version @version<br>
+Copyright 2013<br>
+<b>www.nalepshop.cz</b><br>
+<b>www.ictsystem.cz</b>
+
+

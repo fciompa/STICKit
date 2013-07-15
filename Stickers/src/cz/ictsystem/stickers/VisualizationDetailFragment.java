@@ -675,9 +675,10 @@ public class VisualizationDetailFragment extends SherlockFragment{
 	public void onChangeBackground(String selectedImagePath) {
 		Log.d(TAG, "onChangeBackground");
 		byte[] background = 
-				Utils.getBlobJPEG(Utils.getBitmapFromFile(selectedImagePath,
-				Utils.getDisplaySize(getActivity()).x,
-				Utils.getDisplaySize(getActivity()).y));
+				Utils.getBlobJPEG(
+						Utils.getBitmapFromFile(selectedImagePath,
+						Utils.getDisplaySize(getActivity()).x,
+						Utils.getDisplaySize(getActivity()).y));
 		mBuilder.getVisualization().setBackground(background);
 		if(!isNewVisualization()){
 			new VisualizationImageAsyn(mImage).load(mBuilder);

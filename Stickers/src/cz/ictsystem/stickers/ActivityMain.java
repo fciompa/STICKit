@@ -1,5 +1,6 @@
 package cz.ictsystem.stickers;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,6 +17,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
+import cz.ictsystem.lib.AboutDialog;
 import cz.ictsystem.stickers.data.DbProvider;
 import cz.ictsystem.stickers.data.SyncService;
 
@@ -30,6 +32,8 @@ import cz.ictsystem.stickers.data.SyncService;
 public class ActivityMain extends SherlockFragmentActivity {
 	
 	final private static int REQUEST_CODE_NEW_ACTIVITY = 1;
+
+	final public int DIALOG_ABOUT = 99;
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -63,11 +67,20 @@ public class ActivityMain extends SherlockFragmentActivity {
             case R.id.menu_user_detail:
             	onOpenUserDetail();
                 break;
+            case R.id.menu_about:
+            	onAbout();
+                break;
             default:
                 break;
         }
         return super.onMenuItemSelected(featureId, item);
     }
+
+	private void onAbout() {
+		AboutDialog about = new AboutDialog(this);
+		about.setTitle(R.string.menu_about);
+		about.show();
+	}
 
 	private void onOpenUserDetail() {
     	Intent myIntent = new Intent();
@@ -108,17 +121,20 @@ public class ActivityMain extends SherlockFragmentActivity {
     @Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	if(requestCode == REQUEST_CODE_NEW_ACTIVITY){
-    		String id = String.valueOf(data.getExtras().getInt(Const.ARG_ID));
-    		Cursor cursor = getContentResolver().query(
-    				Uri.withAppendedPath(DbProvider.URI_VISUALIZATION, id),
-					null, null, null, null);
-    		Visualization visualization = new Visualization(this, cursor);
-    		cursor.close();
-    		if(visualization.getBackground() == null){
-    			visualization.delete(this);
+    		if(data != null){
+        		String id = String.valueOf(data.getExtras().getInt(Const.ARG_ID));
+        		Cursor cursor = getContentResolver().query(
+        				Uri.withAppendedPath(DbProvider.URI_VISUALIZATION, id),
+    					null, null, null, null);
+        		Visualization visualization = new Visualization(this, cursor);
+        		cursor.close();
+        		if(visualization.getBackground() == null){
+        			visualization.delete(this);
+        		}
     		}
     	}
 	}
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
      * sections of the app.
