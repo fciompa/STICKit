@@ -5,6 +5,8 @@
 
     <string name="menu_sync">Synchronizovat</string>
     <string name="menu_user_detail">O uživateli</string>
+    <string name="menu_help">Nápověda</string>
+    <string name="menu_terms_and_conditions">Obchodní podmínky</string>
     <string name="menu_about">O aplikaci</string>
 	<string name="menu_new_visualization">Nová vizualizace</string>    
     <string name="menu_share">Sdílet</string>
@@ -12,7 +14,7 @@
     <string name="menu_send_order">Koupit</string>
     <string name="menu_take_photo">Vyfotit pozadí</string>
     <string name="menu_choice_photo">Vybrat pozadí</string>
-    <string name="menu_choice_sticker">Výbrat samolepku</string>
+    <string name="menu_choice_sticker">Vybrat samolepku</string>
 	<string name="menu_edit_name">Upravit název</string>
     <string name="menu_delete">Odstranit</string>
     <string name="menu_ok">OK</string>

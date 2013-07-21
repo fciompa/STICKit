@@ -221,7 +221,7 @@ public class PhotoViewAttacher implements View.OnTouchListener, VersionedGesture
 
 	private static final float MAX_ZOOM = 3.0f;
 	private static final float MID_ZOOM = 1.75f;
-	private static final float MIN_ZOOM = 1.0f;
+	private static final float MIN_ZOOM = 0.5f;
 
 	// Gesture Detectors
 	private GestureDetector mGestureDetector;

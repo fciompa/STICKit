@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.analytics.tracking.android.EasyTracker;
 
 /**
  * Activity contains list of stickers. Stickers can by filtered by category. Activity
@@ -31,6 +32,18 @@ public class ActivityStickers extends SherlockFragmentActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());        
         Utils.setPager(this, mSectionsPagerAdapter, mViewPager);
+    }
+    
+    @Override
+    protected void onStart() {
+    	super.onStart();
+    	EasyTracker.getInstance().activityStart(this);
+    }
+    
+    @Override
+    protected void onStop() {
+    	super.onStop();
+    	EasyTracker.getInstance().activityStop(this);
     }
 
     @Override
@@ -59,7 +72,13 @@ public class ActivityStickers extends SherlockFragmentActivity {
     		Bundle args = new Bundle();
     		args.putLong(Const.ARG_ID, getIntent().getExtras().getLong(Const.ARG_ID));
     		switch (fragmentId) {
-            	case Const.STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_FEATURED:
+	        	case Const.STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_OF_CATEGORY:
+	        		fragment = new StickersFragment();
+	        		args.putInt(Const.ARG_CONTENT_TYPE, Const.FRAGMENT_STICKER_OF_CATEGORY);
+	        		fragment.setArguments(args);
+	        		break;
+
+        		case Const.STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_FEATURED:
             		fragment = new StickersFragment();
             		args.putInt(Const.ARG_CONTENT_TYPE, Const.FRAGMENT_STICKER_FEATURED);
             		fragment.setArguments(args);
@@ -76,12 +95,6 @@ public class ActivityStickers extends SherlockFragmentActivity {
             		args.putInt(Const.ARG_CONTENT_TYPE, Const.FRAGMENT_STICKER_NEW);
             		fragment.setArguments(args);
             		break;
-            
-            	case Const.STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_OF_CATEGORY:
-            		fragment = new StickersFragment();
-            		args.putInt(Const.ARG_CONTENT_TYPE, Const.FRAGMENT_STICKER_OF_CATEGORY);
-            		fragment.setArguments(args);
-            		break;
             }
         	return fragment;
         }
@@ -95,6 +108,9 @@ public class ActivityStickers extends SherlockFragmentActivity {
         public CharSequence getPageTitle(int fragmentId) {
         	String title = "";
             switch (fragmentId) {
+	            case Const.STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_OF_CATEGORY: 
+	            	title = getString(R.string.page_title_all);
+	            	break;
                 case Const.STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_FEATURED: 
                 	title = getString(R.string.page_title_featured);
                 	break;
@@ -103,9 +119,6 @@ public class ActivityStickers extends SherlockFragmentActivity {
                 	break;
                 case Const.STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_NEW: 
                 	title = getString(R.string.page_title_new);
-                	break;
-                case Const.STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_OF_CATEGORY: 
-                	title = getString(R.string.page_title_all);
                 	break;
             }
             return title;

@@ -14,6 +14,14 @@
         android:title="@string/menu_user_detail"/>
     
     <item
+        android:id="@+id/menu_help"
+        android:title="@string/menu_help"/>
+    
+    <item
+        android:id="@+id/menu_terms_and_activity"
+        android:title="@string/menu_terms_and_conditions"/>
+    
+    <item
         android:id="@+id/menu_about"
         android:title="@string/menu_about"/>
     

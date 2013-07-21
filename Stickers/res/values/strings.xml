@@ -5,6 +5,8 @@
 
     <string name="menu_sync">Synchronization</string>
     <string name="menu_user_detail">User info</string>
+	<string name="menu_help">Help</string>
+    <string name="menu_terms_and_conditions">Terms and conditions</string>
     <string name="menu_about">About</string>
 	<string name="menu_new_visualization">New visualization</string>    
     <string name="menu_share">Share</string>

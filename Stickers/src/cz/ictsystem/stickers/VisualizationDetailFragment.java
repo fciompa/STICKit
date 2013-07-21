@@ -15,7 +15,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -35,6 +34,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.analytics.tracking.android.EasyTracker;
 
 import cz.ictsystem.stickers.data.DbProvider;
 import cz.ictsystem.stickers.data.Sticker;
@@ -124,6 +124,8 @@ public class VisualizationDetailFragment extends SherlockFragment{
     			new Visualization(getActivity(), cursor));
 		cursor.close();
 
+		EasyTracker.getInstance().setContext(getActivity().getApplicationContext());
+		EasyTracker.getTracker().sendView("Visualization/" + mBuilder.getVisualization().getName());
 
     	if(savedInstanceState != null && savedInstanceState.containsKey(Const.ARG_PHOTO_NEW_VISUALIZATION)){
     		mNewVisualization = savedInstanceState.getBoolean(Const.ARG_PHOTO_NEW_VISUALIZATION);
@@ -423,9 +425,9 @@ public class VisualizationDetailFragment extends SherlockFragment{
 		});
     	
     	//zooming
-		PhotoViewAttacher attacher = new PhotoViewAttacher(mImage);
+    	PhotoViewAttacher attacher = new PhotoViewAttacher(mImage);
 		attacher.zoomTo((float) 1.2, 0, 0);
-		
+
 		setVisibility(isNewVisualization());
 
     	getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -569,9 +571,6 @@ public class VisualizationDetailFragment extends SherlockFragment{
 		}
 	}
 
-	public void onLoaderReset(Loader<Cursor> arg0) {
-	}
-	
     private void takePhoto() {
 		if(Utils.isIntentAvailable(MediaStore.ACTION_IMAGE_CAPTURE, getActivity().getApplicationContext())){
 		    String mediaStorageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath();
@@ -601,6 +600,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
 		Sticker sticker = new Sticker (getActivity(), stickerId);
 		mBuilder.setSticker(sticker);
 		mStickerColor.setEnabled(sticker.getEditableColor());
+		mStickerColor.setVisibility(sticker.getEditableColor() ? View.VISIBLE : View.INVISIBLE);
 		if(!isNewVisualization()){
 			new VisualizationImageAsyn(mImage).load(mBuilder);
 		} else {
@@ -612,6 +612,8 @@ public class VisualizationDetailFragment extends SherlockFragment{
 		mName.setText(String.valueOf(mBuilder.getVisualization().getName()));
 		mUpdateDate.setText(DateFormat.getDateInstance().format(mBuilder.getVisualization().getUpdateDate()));
 		mStickerColor.setEnabled(mBuilder.getSticker().getEditableColor());
+		mStickerColor.setVisibility(mBuilder.getSticker().getEditableColor() ? View.VISIBLE : View.INVISIBLE);
+
 		new VisualizationImageAsyn(mImage).load(mBuilder);
 	}
 	
@@ -702,6 +704,8 @@ public class VisualizationDetailFragment extends SherlockFragment{
 
 	private void setEditNameEnable(){
 		mName.setEnabled(true);
+		mName.setSelectAllOnFocus(true);
+		mName.setSelection(0, mName.getText().length());
 		mNameOK.setVisibility(View.VISIBLE);
 	}
 

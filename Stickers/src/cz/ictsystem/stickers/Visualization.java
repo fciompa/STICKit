@@ -75,12 +75,14 @@ public class Visualization {
 	private int mStickerId;
 	
 	/**
-	 * Sticker x position in percent of image visualization size 
+	 * Sticker x position in percent of image visualization size, 0 is in the middle
+	 * 100 is in the right, -100 is in the left 
 	 */
 	private int mX;
 
 	/**
-	 * Sticker y position in percent of image visualization size
+	 * Sticker y position in percent of image visualization size, 0 is in the middle
+	 * 100 is in the down, -100 is in the up 
 	 */
 	private int mY;
 	
@@ -104,8 +106,8 @@ public class Visualization {
 		mUpdateDate = new Date(System.currentTimeMillis());
 		mImage = null;
 		mStickerId = 0;
-		mX = 50;
-		mY = 50;
+		mX = 0;
+		mY = 0;
 		mSize = 50;
 		mColor = 0;
 		mPerspective = 0;

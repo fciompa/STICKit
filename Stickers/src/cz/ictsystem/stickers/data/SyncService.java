@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Service;
@@ -68,8 +69,6 @@ public class SyncService extends Service {
 					importVisualization(listFeed);
 				}
 			}
-			
-			
 			Utils.setFirstSynchroDone(getApplicationContext());		
         } catch (ServiceException e) {
 			e.printStackTrace();
@@ -80,10 +79,12 @@ public class SyncService extends Service {
 	}
 
 	private void importCategory(ListFeed listFeed){
+		ArrayList<Integer> updatedItems = new ArrayList<Integer>();
+		ContentResolver contentResolver = getContentResolver();
         for (ListEntry entry : listFeed.getEntries()) {
-        	ContentResolver contentResolver = getContentResolver();
         	ContentValues category = new Category(getApplicationContext(), Utils.getElements(entry)).getCategory(getApplicationContext());
         	String id = category.getAsString(getApplicationContext().getString(R.string.column_id));
+        	updatedItems.add(Integer.valueOf(id));
         	Cursor cursor = contentResolver.query(Uri.withAppendedPath(DbProvider.URI_CATEGORY, id), 
         			null, null, null, null); 
         	if(cursor.getCount() == 1){
@@ -93,14 +94,28 @@ public class SyncService extends Service {
         	}
         	cursor.close();
 	    }
+        
+    	Cursor cursor = contentResolver.query(DbProvider.URI_CATEGORY, null, null, null, null);
+    	if(cursor.getCount()>0){
+        	do{
+        		String id = cursor.getString(cursor.getColumnIndex(getApplicationContext().getString(R.string.column_id)));
+        		if(!updatedItems.contains(Integer.valueOf(id))){
+        			contentResolver.delete(Uri.withAppendedPath(DbProvider.URI_CATEGORY, id), id, null);
+        		}
+        	} while (cursor.moveToNext());
+    	}
+    	cursor.close();
+    	
 	}
 
 	private void importSticker(ListFeed listFeed){
+		ArrayList<Integer> updatedItems = new ArrayList<Integer>();
+    	ContentResolver contentResolver = getContentResolver();
 		for (ListEntry entry : listFeed.getEntries()) {
-        	ContentResolver contentResolver = getContentResolver();
         	Sticker sticker = new Sticker(getApplicationContext(), Utils.getElements(entry));
         	sticker.setImage(downloadImage(sticker.getUrl()));
         	String id = String.valueOf(sticker.getId());
+        	updatedItems.add(Integer.valueOf(id));
         	Cursor cursor = contentResolver.query(Uri.withAppendedPath(DbProvider.URI_STICKER, id), 
         			null, null, null, null); 
         	if(cursor.getCount() == 1){
@@ -110,13 +125,27 @@ public class SyncService extends Service {
         	}
         	cursor.close();
 	    }
+
+		Cursor cursor = contentResolver.query(DbProvider.URI_STICKER, null, null, null, null);
+		if(cursor.getCount()>0){
+	    	do{
+	    		String id = cursor.getString(cursor.getColumnIndex(getApplicationContext().getString(R.string.column_id)));
+	    		if(!updatedItems.contains(Integer.valueOf(id))){
+	    			contentResolver.delete(Uri.withAppendedPath(DbProvider.URI_STICKER, id), id, null);
+	    		}
+	    	} while (cursor.moveToNext());
+		}
+    	cursor.close();
+    	
 	}
 
 	private void importStickerCategory(ListFeed listFeed){
+		ArrayList<Integer> updatedItems = new ArrayList<Integer>();
+    	ContentResolver contentResolver = getContentResolver();
         for (ListEntry entry : listFeed.getEntries()) {
-        	ContentResolver contentResolver = getContentResolver();
         	ContentValues stickerCategory = new StickerCategory(getApplicationContext(), Utils.getElements(entry)).getStickerCategory(getApplicationContext());
         	String id = stickerCategory.getAsString(getApplicationContext().getString(R.string.column_id));
+        	updatedItems.add(Integer.valueOf(id));
         	Cursor cursor = contentResolver.query(Uri.withAppendedPath(DbProvider.URI_STICKER_CATEGORY, id), 
         			null, null, null, null); 
         	if(cursor.getCount() == 1){
@@ -126,6 +155,28 @@ public class SyncService extends Service {
         	}
         	cursor.close();
 	    }
+
+        Cursor cursorSticker = contentResolver.query(DbProvider.URI_STICKER_CATEGORY, null, null, null, null);
+        if(cursorSticker.getCount()>0){
+        	do{
+        		String stickerId = cursorSticker.getString(cursorSticker.getColumnIndex(getApplicationContext().getString(R.string.column_id)));
+        		if(!updatedItems.contains(Integer.valueOf(stickerId))){
+        			contentResolver.delete(Uri.withAppendedPath(DbProvider.URI_STICKER_CATEGORY, stickerId), stickerId, null);
+        			Cursor cursorVisualization = contentResolver.query(DbProvider.URI_VISUALIZATION, null, null, null, null);
+        			if(cursorVisualization.getCount() > 0){
+            			do{
+            				String visualizationStickerId = cursorVisualization.getString(cursorVisualization.getColumnIndex(getApplicationContext().getString(R.string.column_visualization_sticker_id)));
+            				if(visualizationStickerId != null && visualizationStickerId.equals(stickerId)){
+            					String vizualizationId = cursorVisualization.getString(cursorVisualization.getColumnIndex(getApplicationContext().getString(R.string.column_id)));
+            					contentResolver.delete(Uri.withAppendedPath(DbProvider.URI_VISUALIZATION, vizualizationId), vizualizationId, null);
+            				}
+            			} while (cursorVisualization.moveToNext());
+        			}
+        			cursorVisualization.close();
+        		}
+        	} while (cursorSticker.moveToNext());
+        }
+    	cursorSticker.close();
 	}
 
 	private void importVisualization(ListFeed listFeed){

@@ -1,6 +1,5 @@
 package cz.ictsystem.stickers;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.analytics.tracking.android.EasyTracker;
 
 import cz.ictsystem.lib.AboutDialog;
 import cz.ictsystem.stickers.data.DbProvider;
@@ -48,7 +48,17 @@ public class ActivityMain extends SherlockFragmentActivity {
         Utils.setPager(this, mSectionsPagerAdapter, mViewPager);
         synchronize();
     }
-
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance().activityStart(this);
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
+	}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportMenuInflater().inflate(R.menu.main_activity, menu);
@@ -67,6 +77,12 @@ public class ActivityMain extends SherlockFragmentActivity {
             case R.id.menu_user_detail:
             	onOpenUserDetail();
                 break;
+            case R.id.menu_help:
+            	onOpenHelp();
+                break;
+            case R.id.menu_terms_and_activity:
+            	onOpenTermsAndActivity();
+                break;
             case R.id.menu_about:
             	onAbout();
                 break;
@@ -75,6 +91,18 @@ public class ActivityMain extends SherlockFragmentActivity {
         }
         return super.onMenuItemSelected(featureId, item);
     }
+
+	private void onOpenHelp() {
+    	Intent myIntent = new Intent();
+    	myIntent.setClass(this, ActivityHelp.class);
+		startActivity(myIntent);
+	}
+	
+	private void onOpenTermsAndActivity() {
+    	Intent myIntent = new Intent();
+    	myIntent.setClass(this, ActivityTermsAndCondition.class);
+		startActivity(myIntent);
+	}
 
 	private void onAbout() {
 		AboutDialog about = new AboutDialog(this);
@@ -110,7 +138,7 @@ public class ActivityMain extends SherlockFragmentActivity {
 		}
 	}
     
-    private void onNewVisualization(){
+    public void onNewVisualization(){
     	Visualization newVisualization = new Visualization(this);
     	newVisualization.save(this);
 		Intent intent = new Intent(this, ActivityVisualizationDetail.class);

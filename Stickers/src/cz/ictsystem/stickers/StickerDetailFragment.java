@@ -1,13 +1,16 @@
 package cz.ictsystem.stickers;
 
 
+import uk.co.senab.photoview.PhotoViewAttacher;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -27,6 +30,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.analytics.tracking.android.EasyTracker;
 
 import cz.ictsystem.lib.GalleryTitleBackground;
 import cz.ictsystem.lib.ImageViewAsyn;
@@ -262,6 +266,9 @@ public class StickerDetailFragment extends SherlockFragment
 
 		});
     	
+    	@SuppressWarnings("unused")
+		PhotoViewAttacher attacher = new PhotoViewAttacher(mImage);
+    	
     	getLoaderManager().initLoader(LOADER_ID, null, this);
     }
     
@@ -312,10 +319,16 @@ public class StickerDetailFragment extends SherlockFragment
         }
         return menuConsumed;
     }
+    
 
 	private void onShare() {
-		Bitmap bitmap = Utils.getBitmapFromBlob(mSticker.getImage(), 800, 640); 
-		Utils.shareBitmap(getActivity(), bitmap, Bitmap.CompressFormat.PNG);
+		Bitmap stickerBitmap = Utils.getBitmapFromBlob(mSticker.getImage(), 800, 640);
+		Bitmap canvasBitmap = Bitmap.createBitmap(stickerBitmap.getWidth(), stickerBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+		Canvas canvas = new Canvas(canvasBitmap);
+		Paint paint = new Paint();
+		paint.setColorFilter(new LightingColorFilter(Color.BLACK, mColor));
+		canvas.drawBitmap(stickerBitmap, 0, 0, paint);
+		Utils.shareBitmap(getActivity(), canvasBitmap, Bitmap.CompressFormat.PNG);
 	}
 
 	private void onOK() {
@@ -341,6 +354,9 @@ public class StickerDetailFragment extends SherlockFragment
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 		mSticker = new Sticker(cursor);
 
+    	EasyTracker.getInstance().setContext(getActivity().getApplicationContext());
+		EasyTracker.getTracker().sendView("Sticker/" + mSticker.getName());
+		
 		mName.setText(mSticker.getName());
     	new ImageViewAsyn(Utils.mStickerImageCache, Utils.getDisplaySize(getActivity()), mImage).load(mSticker.getId(), mSticker.getImage());
 		mDescription.setText(mSticker.getDescription());

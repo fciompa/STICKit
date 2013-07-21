@@ -32,7 +32,7 @@ public class VisualizationBuilder {
 	private int mWidth; 
 	
 	/**
-	 * Resolution (X) of build visualization bitmap 
+	 * Resolution (Y) of build visualization bitmap 
 	 */
 	private int mHeight;
 
@@ -177,10 +177,12 @@ public class VisualizationBuilder {
 			canvas.drawBitmap(getBackgroundModifiedForVisualization(backroundBitmap), 0, 0, null);
 
 			if (mSticker.getImage() != null){
-				float stickerX = mWidth * (mVisualization.getX()/100f);
-				float stickerY = mHeight * (mVisualization.getY()/100f);
-				Bitmap modifiedVisualization = getStickerModifiedForVisualization(stickerBitmap); 
-				canvas.drawBitmap(modifiedVisualization, stickerX, stickerY, getStickerPaint());
+				float stickerX = mWidth/2 + (mWidth * (mVisualization.getX()/100f))/2;
+				float stickerY = mHeight/2 + (mHeight * (mVisualization.getY()/100f))/2;
+				Bitmap modifiedSticker = getStickerModifiedForVisualization(stickerBitmap);
+				float stickerXLeftUp = stickerX - modifiedSticker.getWidth()/2;
+				float stickerYLeftUp = stickerY - modifiedSticker.getHeight()/2;
+				canvas.drawBitmap(modifiedSticker, stickerXLeftUp, stickerYLeftUp, getStickerPaint());
 			}
 		}
 		

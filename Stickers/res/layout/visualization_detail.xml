@@ -12,7 +12,10 @@
         android:orientation="horizontal"
 		android:background="@drawable/st_new_background" 
 		android:baselineAligned="false"
-        android:visibility="gone">
+		android:visibility="gone">
+		
+        <!-- 
+         -->
 		
 		<!-- first main row-->
         <LinearLayout
@@ -51,7 +54,8 @@
 		                android:layout_width="match_parent"
 		                android:layout_height="fill_parent"
 		                android:baselineAligned="false"
-		                android:orientation="horizontal">
+		                android:orientation="horizontal"
+		                android:gravity="center_vertical">
 		                
 		                <LinearLayout
 		                    android:id="@+id/visualization_new_take_photo_layout" 
@@ -121,20 +125,27 @@
 	                android:drawableLeft="@drawable/st_new_check"
 	                android:text="@string/visualization_detail_description_choice_sticker"/>
 	                
-	            <ImageButton
-			        android:id="@+id/visualization_new_choice_sticker"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-			        android:background="@drawable/st_new_sticker"
-			        android:contentDescription="@string/visualization_detail_description_choice_sticker"/>
+		            <LinearLayout 
+		                android:layout_width="match_parent"
+		                android:layout_height="fill_parent"
+		                android:baselineAligned="false"
+		                android:orientation="horizontal"
+		                android:gravity="center">
+		                	
+	                	<ImageButton
+					        android:id="@+id/visualization_new_choice_sticker"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:background="@drawable/st_new_sticker"
+					        android:contentDescription="@string/visualization_detail_description_choice_sticker"/>
 	
-				<ImageView
-				    android:id="@+id/visualization_new_image_sticker"
-				    android:layout_width="fill_parent"
-				    android:layout_height="fill_parent"
-			        android:visibility="gone"
-			        android:contentDescription="@string/visualization_detail_description_sticker"/>
+						<ImageView
+						    android:id="@+id/visualization_new_image_sticker"
+						    android:layout_width="fill_parent"
+						    android:layout_height="fill_parent"
+					        android:visibility="gone"
+					        android:contentDescription="@string/visualization_detail_description_sticker"/>
+						</LinearLayout>
 	            
 			</LinearLayout>
 	    </LinearLayout>
@@ -181,7 +192,8 @@
 	    <RelativeLayout
 	        android:layout_width="wrap_content"
 	        android:layout_height="0dip"
-	        android:layout_weight="1" >
+	        android:layout_weight="1"
+	        android:background="@color/st_visualization_image_background">
 	        
 	        <ImageView
 	            android:id="@+id/visualization_edit_panel_image_image"

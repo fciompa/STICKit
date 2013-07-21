@@ -54,9 +54,14 @@ public class VisualizationsFragment extends SherlockFragment
     }
 	
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-		Intent intent = new Intent(getActivity().getApplicationContext(), ActivityVisualizationDetail.class);
-		intent.putExtra(Const.ARG_ID, Long.valueOf(id).intValue());
-		startActivity(intent);
+    	if(id != 10){
+    		Intent intent = new Intent(getActivity().getApplicationContext(), ActivityVisualizationDetail.class);
+    		intent.putExtra(Const.ARG_ID, Long.valueOf(id).intValue());
+    		startActivity(intent);
+    	} else {
+    		//Visualization with id == 10 is only motivation picture, so it is add new visualization
+    		((ActivityMain)getActivity()).onNewVisualization();
+    	}
 	}
 
 

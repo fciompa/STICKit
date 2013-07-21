@@ -31,7 +31,7 @@ public class AboutDialog extends Dialog{
 	public void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.about_dialog);
 		TextView tv = (TextView)findViewById(R.id.legal_text);
-		tv.setText(readRawTextFile(R.raw.legal));
+		tv.setText(readRawTextFile(R.raw.legal_eng));
 		tv = (TextView)findViewById(R.id.info_text);
 		
 		String versionName = "";
@@ -48,7 +48,7 @@ public class AboutDialog extends Dialog{
 		}
 		
 		
-		tv.setText(Html.fromHtml(readRawTextFile(R.raw.info).replace("@version", versionName + ", " + String.valueOf(versionCode))));
+		tv.setText(Html.fromHtml(readRawTextFile(R.raw.info_eng).replace("@version", versionName + ", " + String.valueOf(versionCode))));
 		tv.setLinkTextColor(mContext.getResources().getColor(R.color.st_galery_title_background));
 		Linkify.addLinks(tv, Linkify.ALL);
 	}

@@ -199,7 +199,8 @@
 	    <RelativeLayout
 	        android:layout_width="0dip"
 	        android:layout_height="wrap_content"
-	        android:layout_weight="1" >
+	        android:layout_weight="1"
+	        android:background="@color/st_visualization_image_background" >
 	        
 	        <ImageView
 	            android:id="@+id/visualization_edit_panel_image_image"

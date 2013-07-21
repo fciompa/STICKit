@@ -9,15 +9,15 @@ public class Const {
 	public static final int MAIN_ACTIVITY_FRAGMENT_ID_CATEGORY = 4;
 	public static final int MAIN_ACTIVITY_FRAGMENT_ID_STICKER_OF_CATEGORY = 5;
 
-	public static final int STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_FEATURED = 0;
-	public static final int STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_POPULAR = 1;
-	public static final int STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_NEW = 2;
-	public static final int STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_OF_CATEGORY = 3;
+	public static final int STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_OF_CATEGORY = 0;
+	public static final int STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_FEATURED = 1;
+	public static final int STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_POPULAR = 2;
+	public static final int STICKERS_ACTIVITY_FRAGMENT_ID_STICKER_NEW = 3;
 
-	public static final int FRAGMENT_STICKER_FEATURED = 0;
-	public static final int FRAGMENT_STICKER_POPULAR = 1;
-	public static final int FRAGMENT_STICKER_NEW = 2;
-	public static final int FRAGMENT_STICKER_OF_CATEGORY = 3;
+	public static final int FRAGMENT_STICKER_OF_CATEGORY = 0;
+	public static final int FRAGMENT_STICKER_FEATURED = 1;
+	public static final int FRAGMENT_STICKER_POPULAR = 2;
+	public static final int FRAGMENT_STICKER_NEW = 3;
 
 	
 	public static final String ARG_CONTENT_TYPE = "content_type";
