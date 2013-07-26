@@ -138,6 +138,12 @@ public class Utils {
 		return size;
 	}
 
+//	public static Point getImageSize(){
+//		Point size = new Point();
+//		size.set(1280, 720);
+//		return size;
+//	}
+
 	public static boolean getLandscape(Context context){
 		Display display = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 		Point displaySize = getDisplaySize(display);

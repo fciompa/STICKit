@@ -659,28 +659,45 @@ public class VisualizationDetailFragment extends SherlockFragment{
 	}
 	
 	private void onChoiceGallery(Intent intent){
-		String selectedImagePath = "";
-		Uri selectedImageUri = intent.getData();
-		if(selectedImageUri.getScheme().equals("content")){
-		    String[] projection = { MediaStore.Images.Media.DATA };
-		    Cursor cursor = getActivity().getContentResolver().query(selectedImageUri, projection, null, null, null);
-		    cursor.moveToFirst();
-			selectedImagePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
-		} else if (selectedImageUri.getScheme().equals("file")){
-			selectedImagePath = selectedImageUri.getPath();
-		} else {
-			Toast.makeText(getActivity(), "Unknown background source type", Toast.LENGTH_LONG).show();
+		String selectedImagePath = null;
+		if(intent != null){
+			Uri selectedImageUri = intent.getData();
+			if(selectedImageUri != null){
+				if(selectedImageUri.getScheme().equals("content")){
+					if(!selectedImageUri.toString().contains("content://com.google.android.apps.docs.files/exposed_content") && 
+							!selectedImageUri.toString().contains("content://com.google.android.gallery3d.provider/picasa")){
+					    String[] projection = { MediaStore.Images.Media.DATA };
+					    Cursor cursor = getActivity().getContentResolver().query(selectedImageUri, projection, null, null, null);
+					    if(cursor != null && cursor.getCount() > 0){
+						    cursor.moveToFirst();
+							selectedImagePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+					    }
+					} else {
+						Toast.makeText(getActivity(), "We are sorry, but it is unknown how to operate with Google drive app", Toast.LENGTH_LONG).show();
+					}
+				} else if (selectedImageUri.getScheme().equals("file")){
+					selectedImagePath = selectedImageUri.getPath();
+				} else {
+					Toast.makeText(getActivity(), "Unknown background source type", Toast.LENGTH_LONG).show();
+				}
+			}
 		}
-		onChangeBackground(selectedImagePath);		
+
+		if(selectedImagePath != null){
+			onChangeBackground(selectedImagePath);		
+		} else {
+			Toast.makeText(getActivity(), "Výbìr pozadí se nezdaøil", Toast.LENGTH_LONG).show();
+		}
 	}
 
 	public void onChangeBackground(String selectedImagePath) {
 		Log.d(TAG, "onChangeBackground");
 		byte[] background = 
 				Utils.getBlobJPEG(
-						Utils.getBitmapFromFile(selectedImagePath,
-						Utils.getDisplaySize(getActivity()).x,
-						Utils.getDisplaySize(getActivity()).y));
+						Utils.getBitmapFromFile(
+								selectedImagePath,
+								Utils.getDisplaySize(getActivity()).x,
+								Utils.getDisplaySize(getActivity()).y));
 		mBuilder.getVisualization().setBackground(background);
 		if(!isNewVisualization()){
 			new VisualizationImageAsyn(mImage).load(mBuilder);

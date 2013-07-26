@@ -48,6 +48,7 @@ public class StickersAdapter extends SimpleCursorAdapter{
 		private ImageViewAsyn mImage; 
 		private TextView mName;
 		
+		@SuppressWarnings("deprecation")
 		ItemHolder(Context context, View item) {
     		mImage = new ImageViewAsyn(Utils.mStickerImageCache, mDisplaySize, (ImageView) item.findViewById(R.id.sticker_image));
     		mName = (TextView) item.findViewById(R.id.sticker_name);

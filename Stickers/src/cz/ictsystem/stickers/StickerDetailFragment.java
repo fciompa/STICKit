@@ -1,7 +1,6 @@
 package cz.ictsystem.stickers;
 
 
-import uk.co.senab.photoview.PhotoViewAttacher;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -47,6 +46,7 @@ public class StickerDetailFragment extends SherlockFragment
 	
 	private TextView mName;
 	private ImageView mImage;
+	private ImageView mImageFullScreen;
 	private TextView mDescription;
 	private View mColorPalette;
 	private View mEditColorView;
@@ -83,7 +83,8 @@ public class StickerDetailFragment extends SherlockFragment
         return inflater.inflate(R.layout.sticker_detail, container, false);
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
     	
@@ -98,6 +99,7 @@ public class StickerDetailFragment extends SherlockFragment
     	
     	mName = (TextView) getView().findViewById(R.id.sticker_name);
     	mImage = (ImageView) getView().findViewById(R.id.sticker_image);
+    	mImageFullScreen = (ImageView) getView().findViewById(R.id.sticker_image_full_screen);
     	mDescription = (TextView) getView().findViewById(R.id.sticker_description);
     	mColorPalette = getView().findViewById(R.id.sticker_color_palette);
     	mEditColorView = getView().findViewById(R.id.sticker_edit_color_view);
@@ -125,6 +127,20 @@ public class StickerDetailFragment extends SherlockFragment
     	mColor_15 = (ImageButton) getView().findViewById(R.id.color_15);
     	mColor_16 = (ImageButton) getView().findViewById(R.id.color_16);
 
+    	mImage.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				onStickerImage();
+			}
+    	});
+    	
+    	mImageFullScreen.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				onStickerImage();
+			}
+    	});
+    	
     	mEditColor.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -266,13 +282,16 @@ public class StickerDetailFragment extends SherlockFragment
 
 		});
     	
-    	@SuppressWarnings("unused")
-		PhotoViewAttacher attacher = new PhotoViewAttacher(mImage);
-    	
     	getLoaderManager().initLoader(LOADER_ID, null, this);
     }
     
-    @Override
+    protected void onStickerImage() {
+		Intent intent = new Intent(getActivity().getApplicationContext(), ActivityStickerImage.class);
+		intent.putExtra(Const.ARG_ID, mStickerId);
+		startActivity(intent);
+	}
+
+	@Override
     public void onResume() {
     	super.onResume();
     	getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);

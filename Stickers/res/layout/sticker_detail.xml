@@ -18,16 +18,33 @@
 		    android:drawableLeft="@drawable/sticker"
 		    android:text="@string/sticker_description_name"
 		    android:contentDescription="@string/sticker_description_name"/>
+		
+		<RelativeLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+		    
+			<ImageView
+			    android:id="@+id/sticker_image"
+			    android:layout_width="fill_parent"
+			    android:layout_height="180dp"
+			    android:layout_centerInParent="true"
+			    android:layout_gravity="center"
+			    android:gravity="center_horizontal"
+			    android:contentDescription="@string/sticker_description_image"
+			    android:scaleType="centerInside" />
+			
+			<ImageView
+			    android:id="@+id/sticker_image_full_screen"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:src="@drawable/full_screen"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:contentDescription="@string/sticker_description_image"/>
+			
+						
+		</RelativeLayout>
 	
-		<ImageView
-		    android:id="@+id/sticker_image"
-		    android:layout_width="fill_parent"
-		    android:layout_height="180dp"
-		    android:layout_gravity="center"
-		    android:gravity="center_horizontal"
-		    android:contentDescription="@string/sticker_description_image"
-		    android:scaleType="centerInside" />
-
 		<TextView
 		    android:id="@+id/sticker_description"
 		    android:layout_width="wrap_content"

@@ -71,11 +71,10 @@ public class SyncService extends Service {
 			}
 			Utils.setFirstSynchroDone(getApplicationContext());		
         } catch (ServiceException e) {
-			e.printStackTrace();
+        	Log.d(getClass().getSimpleName(), e.getMessage());
         } catch (IOException e) {
-            Log.e(getClass().getSimpleName(), "Drive esplode", e);
+            Log.d(getClass().getSimpleName(), e.getMessage());
         }		
-		
 	}
 
 	private void importCategory(ListFeed listFeed){

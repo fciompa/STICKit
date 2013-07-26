@@ -47,6 +47,7 @@ public class VisualizationsAdapter extends SimpleCursorAdapter{
 		private TextView mUpdateDate;
 		private TextView mName;
 
+		@SuppressWarnings("deprecation")
 		ItemHolder(Context context, View item) {
     		mContext = context;
     		ImageView imageView = (ImageView) item.findViewById(R.id.visualization_image);
