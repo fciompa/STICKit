@@ -87,5 +87,8 @@
 	<string name="sticker_share_image">Share Image</string>
 	
 	<string name="crash_toast_text">Application crashed, please send trace log by email. Developer team will appreciate it and thank you.</string>
+	
+	<string name="new_sticker">New sticker: </string>
+	<string name="new_stickers">New stickers</string>
 		
 </resources>

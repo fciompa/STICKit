@@ -170,7 +170,6 @@ public class Utils {
 	public static void setFirstSynchroDone(Context context){
 		SharedPreferences preferences = context.getSharedPreferences(Const.SYNCHRO_PREFS_NAME, 0);
 		preferences.edit().putBoolean(Const.SYNCHRO_PREFS_FIRST_SYNCHRO, false).commit();
-		
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -178,6 +177,7 @@ public class Utils {
 	public static void setPager(SherlockFragmentActivity sherlockFragmentActivity, FragmentPagerAdapter mSectionsPagerAdapter, ViewPager mViewPager) {
         mViewPager = (ViewPager) sherlockFragmentActivity.findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setCurrentItem(sherlockFragmentActivity.getIntent().getIntExtra(Const.ARG_ID, 0) == 0 ? Const.MAIN_ACTIVITY_FRAGMENT_ID_VISUALIZATION : Const.MAIN_ACTIVITY_FRAGMENT_ID_STICKER_NEW);
         
         TitlePageIndicator indicator = (TitlePageIndicator)sherlockFragmentActivity.findViewById(R.id.indicator);
         indicator.setViewPager(mViewPager);

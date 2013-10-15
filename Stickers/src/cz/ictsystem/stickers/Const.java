@@ -1,6 +1,8 @@
 package cz.ictsystem.stickers;
 
 public class Const {
+
+	public static final String FEED_URL = "https://spreadsheets.google.com/feeds/worksheets/0Auy9E6-b8VKtdGt4c25uUkM5ME5Lc0llZWZ2SVYxR3c/public/basic";
 	
 	public static final int MAIN_ACTIVITY_FRAGMENT_ID_VISUALIZATION = 0;
 	public static final int MAIN_ACTIVITY_FRAGMENT_ID_STICKER_FEATURED = 1;
@@ -40,5 +42,9 @@ public class Const {
 	public static final String FILE_SUFFIX_JPG = ".jpg";
 	public static final String FILE_SUFFIX_PNG = ".png";
 
+	public static final String STUP_PROVIDER_AUTHORITY = "cz.ictsystem.stickers.data.StubProvider";
+	public static final String ACCOUNT_TYPE = "cz.ictsystem.stickers";
+    public static final String ACCOUNT = "dummyaccount";
+    public static final long SYNC_INTERVAL = 24*60*60;//interval in seconds
 	
 }

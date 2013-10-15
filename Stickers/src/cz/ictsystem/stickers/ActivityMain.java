@@ -1,5 +1,8 @@
 package cz.ictsystem.stickers;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,11 +18,11 @@ import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.crashlytics.android.Crashlytics;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import cz.ictsystem.lib.AboutDialog;
 import cz.ictsystem.stickers.data.DbProvider;
-import cz.ictsystem.stickers.data.SyncService;
 
 
 /**
@@ -31,24 +34,29 @@ import cz.ictsystem.stickers.data.SyncService;
  */
 public class ActivityMain extends SherlockFragmentActivity {
 	
+//	final private static String TAG = "ActivityMain";
 	final private static int REQUEST_CODE_NEW_ACTIVITY = 1;
 
 	final public int DIALOG_ABOUT = 99;
 
+	private Account  mAccount;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        Crashlytics.start(this);
+		setContentView(R.layout.activity_main);
         getSupportActionBar().setIcon(R.drawable.logo);
         getSupportActionBar().setTitle(null);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());        
         Utils.setPager(this, mSectionsPagerAdapter, mViewPager);
-        synchronize();
+        setUpAndRunSynchronization();
     }
-	@Override
+    
+    @Override
 	protected void onStart() {
 		super.onStart();
 		EasyTracker.getInstance().activityStart(this);
@@ -116,28 +124,42 @@ public class ActivityMain extends SherlockFragmentActivity {
 		startActivity(myIntent);
 	}
 
-	private void synchronize() {
+	private void setUpAndRunSynchronization() {
+        final String accountName = Const.ACCOUNT;
+		mAccount = new Account(accountName, Const.ACCOUNT_TYPE);
+        AccountManager accountManager = (AccountManager) getApplicationContext().getSystemService(ACCOUNT_SERVICE);
+        if (accountManager.addAccountExplicitly(mAccount, null, null)) {
+        	ContentResolver.setIsSyncable(mAccount, Const.STUP_PROVIDER_AUTHORITY, 1);
+    		ContentResolver.setSyncAutomatically(mAccount, Const.STUP_PROVIDER_AUTHORITY, true);		
+    		ContentResolver.addPeriodicSync(mAccount, Const.STUP_PROVIDER_AUTHORITY, new Bundle(), Const.SYNC_INTERVAL);
+        }
+
 		ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
          
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if(activeNetwork != null && 
-        		!Utils.getFirstSynchro(this) && 
-        		activeNetwork.isConnected() && 
-        		activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
-        	startService(new Intent(getApplicationContext(), SyncService.class));
+        		activeNetwork.isConnected()){
+        	if (Utils.getFirstSynchro(this) || activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
+                requestSynchronization();
+        	}
         }
 	}
 
 	private void synchronizationByUser() {
 		ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-		if(activeNetwork != null && 
-				!Utils.getFirstSynchro(this) && 
-				activeNetwork.isConnected()){
-			startService(new Intent(getApplicationContext(), SyncService.class));
+		if(activeNetwork != null && activeNetwork.isConnected()){
+			requestSynchronization();
 		}
 	}
     
+	private void requestSynchronization() {
+		Bundle b = new Bundle();
+        b.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+        b.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+        ContentResolver.requestSync(mAccount, Const.STUP_PROVIDER_AUTHORITY, b);
+	}
+
     public void onNewVisualization(){
     	Visualization newVisualization = new Visualization(this);
     	newVisualization.save(this);

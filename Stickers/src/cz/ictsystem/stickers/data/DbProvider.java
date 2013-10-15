@@ -10,7 +10,7 @@ import android.net.Uri;
 
 public class DbProvider extends ContentProvider {
 	
-	private static final String AUTHORITY = "cz.ictsystem.stickers";
+    private static final String AUTHORITY = "cz.ictsystem.stickers";
 	private static final String CONTENT = "content://";
 	private static final String CONTENT_AUTORITY = CONTENT + AUTHORITY + "/";
 	private static final String ID = "/#";

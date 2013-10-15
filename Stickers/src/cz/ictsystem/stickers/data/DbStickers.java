@@ -2,21 +2,21 @@ package cz.ictsystem.stickers.data;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+
 import cz.ictsystem.lib.Column;
 import cz.ictsystem.lib.ColumnType;
 import cz.ictsystem.lib.DbStructure;
 import cz.ictsystem.lib.Table;
 import cz.ictsystem.stickers.R;
 
-public class DbStickers extends SQLiteOpenHelper {
+public class DbStickers extends SQLiteAssetHelper {
 	private static final String DATABASE_NAME = "nalepShop";
 	private static final int DATABASE_VERSION = 1;
-	private static final String TAG = "DbStickers";
+//	private static final String TAG = "DbStickers";
 	
 	private static Context mContext;
 	private static DbStructure mStructure;
@@ -74,54 +74,54 @@ public class DbStickers extends SQLiteOpenHelper {
 		return mStructure.getTable(table).getColumn(column).getName();
 	}
 	
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-		createTables(db, getDbStructure(mContext));
-		mContext.startService(new Intent(mContext, SyncService.class));
-	}
+//	@Override
+//	public void onCreate(SQLiteDatabase db) {
+//		createTables(db, getDbStructure(mContext));
+//		mContext.startService(new Intent(mContext, SyncService.class));
+//	}
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	private void createTables(SQLiteDatabase db, DbStructure dbStructure){
-		Log.d(TAG, "createTables");
-		for(Table table : dbStructure.getTables().values()){
-			createTable(db, table);
-		}
-		
-	}
+//	private void createTables(SQLiteDatabase db, DbStructure dbStructure){
+//		Log.d(TAG, "createTables");
+//		for(Table table : dbStructure.getTables().values()){
+//			createTable(db, table);
+//		}
+//		
+//	}
 
-	private void createTable(SQLiteDatabase db, Table table){
-		Log.d(TAG, table.getName());
-		String sql = "CREATE TABLE " + table.getName() + "( _id INTEGER PRIMARY KEY AUTOINCREMENT";
-		for(Column column : table.getColumns().values()){
-			if (column.getType() != ColumnType.ID){
-				if (column.getType() == ColumnType.STRING){
-					sql = sql + ", " + column.getName() + " TEXT NOT NULL ";
-				} else if (column.getType() == ColumnType.INT){
-					sql = sql + ", " + column.getName() + " INTEGER NOT NULL ";
-				} else if (column.getType() == ColumnType.FLOAT){
-					sql = sql + ", " + column.getName() + " REAL NOT NULL ";
-				} else if (column.getType() == ColumnType.DATE){
-					sql = sql + ", " + column.getName() + " TEXT NOT NULL ";
-				} else if (column.getType() == ColumnType.DATETIME){
-					sql = sql + ", " + column.getName() + " TEXT NOT NULL ";
-				} else if (column.getType() == ColumnType.BLOB){
-					sql = sql + ", " + column.getName() + " BLOB ";
-				} else if (column.getType() == ColumnType.BOOLEAN){
-					sql = sql + ", " + column.getName() + " INTEGER NOT NULL ";
-				} else {
-					throw new IllegalArgumentException("Unknown Column data type");
-				}
-				
-			}
-		}
-		sql = sql + ");";
-		Log.d(TAG, sql);
-		db.execSQL(sql);
-    }
+//	private void createTable(SQLiteDatabase db, Table table){
+//		Log.d(TAG, table.getName());
+//		String sql = "CREATE TABLE " + table.getName() + "( _id INTEGER PRIMARY KEY AUTOINCREMENT";
+//		for(Column column : table.getColumns().values()){
+//			if (column.getType() != ColumnType.ID){
+//				if (column.getType() == ColumnType.STRING){
+//					sql = sql + ", " + column.getName() + " TEXT NOT NULL ";
+//				} else if (column.getType() == ColumnType.INT){
+//					sql = sql + ", " + column.getName() + " INTEGER NOT NULL ";
+//				} else if (column.getType() == ColumnType.FLOAT){
+//					sql = sql + ", " + column.getName() + " REAL NOT NULL ";
+//				} else if (column.getType() == ColumnType.DATE){
+//					sql = sql + ", " + column.getName() + " TEXT NOT NULL ";
+//				} else if (column.getType() == ColumnType.DATETIME){
+//					sql = sql + ", " + column.getName() + " TEXT NOT NULL ";
+//				} else if (column.getType() == ColumnType.BLOB){
+//					sql = sql + ", " + column.getName() + " BLOB ";
+//				} else if (column.getType() == ColumnType.BOOLEAN){
+//					sql = sql + ", " + column.getName() + " INTEGER NOT NULL ";
+//				} else {
+//					throw new IllegalArgumentException("Unknown Column data type");
+//				}
+//				
+//			}
+//		}
+//		sql = sql + ");";
+//		Log.d(TAG, sql);
+//		db.execSQL(sql);
+//    }
 	
 	public Boolean openDatabase(){
         mDb = getWritableDatabase();

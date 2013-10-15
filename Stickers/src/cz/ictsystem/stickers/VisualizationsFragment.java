@@ -74,11 +74,12 @@ public class VisualizationsFragment extends SherlockFragment
 		if(data.getCount() > 0){
 			mAdapter.swapCursor(data);
 			mLoading.setVisibility(View.GONE);
-		} else {
-			if(!Utils.getFirstSynchro(getActivity())){
-				mLoading.setVisibility(View.GONE);
-			}
-		}
+		} 
+//		else {
+//			if(!Utils.getFirstSynchro(getActivity())){
+//				mLoading.setVisibility(View.GONE);
+//			}
+//		}
 	}
 
 	public void onLoaderReset(Loader<Cursor> loader) {

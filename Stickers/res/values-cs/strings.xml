@@ -86,5 +86,7 @@
 	<string name="sticker_share_image">Sdílení obrázku</string>
 	
 	<string name="crash_toast_text">Aplikace havarovala, vývojový tým se omlouvá a ocení poslání trasovacího logu mailem. Vývojový tým děkuje předem.</string>
-			
+	
+	<string name="new_sticker">Nová samolepka: </string>			
+	<string name="new_stickers">Nové samolepky</string>
 </resources>
