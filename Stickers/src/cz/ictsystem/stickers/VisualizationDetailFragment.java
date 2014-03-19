@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.LightingColorFilter;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -36,6 +38,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.analytics.tracking.android.EasyTracker;
 
+import cz.ictsystem.lib.GallerySendOrderBackground;
 import cz.ictsystem.stickers.data.DbProvider;
 import cz.ictsystem.stickers.data.Sticker;
 import cz.ictsystem.stickers.data.User;
@@ -64,6 +67,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
 	private ImageView mImage;
 	private EditText mName;
 	private ImageButton mNameOK;
+	private ImageButton mSendOrder;
 	private TextView mUpdateDate;
 
 	//edit color palette
@@ -107,7 +111,8 @@ public class VisualizationDetailFragment extends SherlockFragment{
         return inflater.inflate(R.layout.visualization_detail, container, false);
     }	
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
     	Log.d(TAG, "onActivityCreated");
@@ -156,6 +161,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
     	mImage = (ImageView) getView().findViewById(R.id.visualization_edit_panel_image_image);
     	mName = (EditText) getView().findViewById(R.id.visualization_edit_panel_image_name);
     	mNameOK = (ImageButton) getView().findViewById(R.id.visualization_edit_panel_image_name_ok);
+    	mSendOrder = (ImageButton) getView().findViewById(R.id.visualization_edit_panel_send_order);
     	mUpdateDate = (TextView) getView().findViewById(R.id.visualization_edit_panel_image_update_date);
     	
     	//edit color palette
@@ -229,6 +235,21 @@ public class VisualizationDetailFragment extends SherlockFragment{
 			}
 		});
 
+		mSendOrder.setBackgroundDrawable((new GallerySendOrderBackground(
+				getActivity(), 
+				getActivity().getResources().getColor(R.color.st_galery_title_background))).get());
+		
+		Drawable drawable = mSendOrder.getDrawable();
+		drawable.setColorFilter(new LightingColorFilter(0x000000, 0xffffff));
+		
+		mSendOrder.setImageDrawable(drawable);
+		mSendOrder.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				sendOrder();	
+			}
+		});
+    	
     	//edit color palette
     	if(savedInstanceState != null && savedInstanceState.containsKey(Const.ARG_COLOR_PALATTE_VISIBILITY)){
     		mViewColorPalette.setVisibility(savedInstanceState.getInt(Const.ARG_COLOR_PALATTE_VISIBILITY));
@@ -352,7 +373,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				mToucher.sizeIncrease(event);
-				return true;
+				return false;
 			}
 		});
     	
@@ -360,7 +381,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				mToucher.sizeDecrease(event);
-				return true;
+				return false;
 			}
 		});
     	
@@ -368,7 +389,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				mToucher.moveUp(event);
-				return true;
+				return false;
 			}
 		});
 
@@ -376,7 +397,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				mToucher.moveDown(event);
-				return true;
+				return false;
 			}
 		});
     	
@@ -384,7 +405,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				mToucher.moveLeft(event);
-				return true;
+				return false;
 			}
 		});
 
@@ -392,7 +413,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				mToucher.moveRight(event);
-				return true;
+				return  false;
 			}
 		});
     	
@@ -412,7 +433,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				mToucher.perspectiveIncrease(event);
-				return true;
+				return  false;
 			}
 		});
 
@@ -420,7 +441,7 @@ public class VisualizationDetailFragment extends SherlockFragment{
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				mToucher.perspectiveDecrease(event);
-				return true;
+				return false;
 			}
 		});
     	
@@ -521,7 +542,6 @@ public class VisualizationDetailFragment extends SherlockFragment{
 		}
 	}
 	
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	switch (requestCode){

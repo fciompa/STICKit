@@ -2,6 +2,7 @@ package cz.ictsystem.stickers;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import com.google.analytics.tracking.android.EasyTracker;
 
 import cz.ictsystem.lib.AboutDialog;
 import cz.ictsystem.stickers.data.DbProvider;
+import cz.ictsystem.stickers.data.User;
 
 
 /**
@@ -35,9 +37,10 @@ import cz.ictsystem.stickers.data.DbProvider;
 public class ActivityMain extends SherlockFragmentActivity {
 	
 //	final private static String TAG = "ActivityMain";
-	final private static int REQUEST_CODE_NEW_ACTIVITY = 1;
-
-	final public int DIALOG_ABOUT = 99;
+	private final static int ACTIVITY_REQUEST_CODE_NEW_ACTIVITY = 1;
+	private final static int ACTIVITY_REGUEST_CODE_OPEN_USER_INFO = 4;
+	
+//	private final int DIALOG_ABOUT = 99;
 
 	private Account  mAccount;
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -47,6 +50,8 @@ public class ActivityMain extends SherlockFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        saveDatabseToExternal();
+        
         Crashlytics.start(this);
 		setContentView(R.layout.activity_main);
         getSupportActionBar().setIcon(R.drawable.logo);
@@ -56,7 +61,40 @@ public class ActivityMain extends SherlockFragmentActivity {
         setUpAndRunSynchronization();
     }
     
-    @Override
+//    private void saveDatabseToExternal() {
+//    	try {
+//    		final String inFileName = "/data/data/cz.ictsystem.stickers/databases/nalepShop";
+//    		File dbFile = new File(inFileName);
+//    		FileInputStream fis = new FileInputStream(dbFile);
+//
+//    		String outFileName = Environment.getExternalStorageDirectory()+"/nalepShop_copy.db";
+//
+//    		Log.d(TAG, outFileName);
+//    		
+//    		// Open the empty db as the output stream
+//    		OutputStream output = new FileOutputStream(outFileName);
+//
+//    		// Transfer bytes from the inputfile to the outputfile
+//    		byte[] buffer = new byte[1024];
+//    		int length;
+//    		while ((length = fis.read(buffer))>0){
+//    			output.write(buffer, 0, length);
+//    		}
+//
+//    		// Close the streams
+//    		output.flush();
+//    		output.close();
+//    		fis.close();	
+//    	} catch (FileNotFoundException e) {
+//    		// TODO Auto-generated catch block
+//    		e.printStackTrace();
+//    	} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//    }
+
+	@Override
 	protected void onStart() {
 		super.onStart();
 		EasyTracker.getInstance().activityStart(this);
@@ -67,6 +105,7 @@ public class ActivityMain extends SherlockFragmentActivity {
 		super.onStop();
 		EasyTracker.getInstance().activityStop(this);
 	}
+	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportMenuInflater().inflate(R.menu.main_activity, menu);
@@ -165,12 +204,34 @@ public class ActivityMain extends SherlockFragmentActivity {
     	newVisualization.save(this);
 		Intent intent = new Intent(this, ActivityVisualizationDetail.class);
 		intent.putExtra(Const.ARG_ID, newVisualization.getId());
-		startActivityForResult(intent, REQUEST_CODE_NEW_ACTIVITY);
+		startActivityForResult(intent, ACTIVITY_REQUEST_CODE_NEW_ACTIVITY);
     }
+
+	public void onSendOrder(int mailType, int id) {
+		User user = new User(getApplicationContext());
+		if(user.isEmpty()){
+			Intent intent = new Intent(this, ActivityUserDetail.class);
+			intent.putExtra(Const.ARG_MAIL_TYPE, mailType);
+			intent.putExtra(Const.ARG_ID, id);
+			startActivityForResult(intent, ACTIVITY_REGUEST_CODE_OPEN_USER_INFO);
+		} else {
+        	Cursor cursor = getContentResolver().query(
+    				Uri.withAppendedPath(DbProvider.URI_VISUALIZATION, String.valueOf(id)),
+    				null, null, null, null);
+        	
+        	VisualizationBuilder builder = new VisualizationBuilder(
+        			this, 
+        			Utils.getDisplaySize(this), 
+        			new Visualization(this, cursor));
+    		cursor.close();
+			
+			Utils.sendMail(this, builder.getSticker(), builder.getVisualization().getColor(), user, mailType);
+		}
+	}
 
     @Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	if(requestCode == REQUEST_CODE_NEW_ACTIVITY){
+    	if(requestCode == ACTIVITY_REQUEST_CODE_NEW_ACTIVITY){
     		if(data != null){
         		String id = String.valueOf(data.getExtras().getInt(Const.ARG_ID));
         		Cursor cursor = getContentResolver().query(
@@ -182,6 +243,10 @@ public class ActivityMain extends SherlockFragmentActivity {
         			visualization.delete(this);
         		}
     		}
+    	} else if (requestCode == ACTIVITY_REGUEST_CODE_OPEN_USER_INFO){
+			if(resultCode == Activity.RESULT_OK){
+				onSendOrder(data.getIntExtra(Const.ARG_MAIL_TYPE, Const.MAIL_TYPE_QUESTION), data.getIntExtra(Const.ARG_ID, 0));
+			}
     	}
 	}
 

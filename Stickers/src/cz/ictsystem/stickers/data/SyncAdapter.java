@@ -137,7 +137,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     	ContentResolver contentResolver = mContext.getContentResolver();
 		for (ListEntry entry : listFeed.getEntries()) {
         	Sticker sticker = new Sticker(mContext, Utils.getElements(entry));
-        	sticker.setImage(downloadImage(sticker.getUrl()));
+        	
         	String id = String.valueOf(sticker.getId());
         	updatedItems.add(Integer.valueOf(id));
         	Cursor cursor = contentResolver.query(Uri.withAppendedPath(DbProvider.URI_STICKER, id), 
@@ -145,6 +145,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         	if(cursor.getCount() == 1){
         		contentResolver.update(Uri.withAppendedPath(DbProvider.URI_STICKER, id),  sticker.getSticker(mContext), null, null);
         	} else {
+        		sticker.setImage(downloadImage(sticker.getUrl()));
         		contentResolver.insert(DbProvider.URI_STICKER,  sticker.getSticker(mContext));
         		if(!Utils.getFirstSynchro(mContext)){
             		notifyNewSticker(sticker);

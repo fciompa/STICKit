@@ -1,6 +1,5 @@
 package cz.ictsystem.stickers;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -9,8 +8,6 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -22,7 +19,7 @@ import cz.ictsystem.stickers.data.DbProvider;
  * A fragment displays list of visualizations.
  */
 public class VisualizationsFragment extends SherlockFragment 
-		implements OnItemClickListener, LoaderManager.LoaderCallbacks<Cursor> {
+		implements LoaderManager.LoaderCallbacks<Cursor> {
     
 	private GridView mGridView;
 	private VisualizationsAdapter mAdapter;
@@ -48,23 +45,14 @@ public class VisualizationsFragment extends SherlockFragment
     	mGridView = (GridView) getView().findViewById(R.id.gridView);
     	int numColumns = Utils.getLandscape(getActivity()) ? 2 : 1;  
     	mGridView.setNumColumns(numColumns);
-    	mGridView.setOnItemClickListener(this);
     	mGridView.setAdapter(mAdapter);
+
+    	mGridView.setFocusable(false);
+    	mGridView.setFocusableInTouchMode(false);
+    	
     	getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 	
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-    	if(id != 10){
-    		Intent intent = new Intent(getActivity().getApplicationContext(), ActivityVisualizationDetail.class);
-    		intent.putExtra(Const.ARG_ID, Long.valueOf(id).intValue());
-    		startActivity(intent);
-    	} else {
-    		//Visualization with id == 10 is only motivation picture, so it is add new visualization
-    		((ActivityMain)getActivity()).onNewVisualization();
-    	}
-	}
-
-
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 		mLoading.setVisibility(View.VISIBLE);
 		return new CursorLoader(getActivity(), DbProvider.URI_VISUALIZATION, null, null, null, null);

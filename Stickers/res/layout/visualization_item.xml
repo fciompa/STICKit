@@ -11,7 +11,9 @@
 	    android:scaleType="centerCrop"
 	    android:layout_alignParentLeft="true"
 	    android:layout_centerVertical="true"
-	    android:contentDescription="@string/visualization_detail_description_image"/>
+	    android:contentDescription="@string/visualization_detail_description_image"
+        android:focusable="false"
+       	android:focusableInTouchMode="false"/>
 
     <LinearLayout 
         android:layout_width="wrap_content"
@@ -44,4 +46,17 @@
 	        android:paddingLeft="@dimen/st_gallery_title_padding_left"
 	        android:gravity="left|center_vertical"/>
 	    </LinearLayout>
+	
+		<ImageButton
+	        android:id="@+id/visualization_send_order"
+	        android:layout_width="@dimen/st_gallery_buy_width"
+	        android:layout_height="@dimen/st_gallery_title_baground_hight"
+	        android:layout_alignParentRight="true"
+        	android:layout_alignParentBottom="true"
+        	android:padding="1dp"
+	        android:scaleType="centerInside"
+	        android:src="@drawable/buy"
+	        android:focusable="false"
+        	android:focusableInTouchMode="false"/>
+		
 </RelativeLayout>

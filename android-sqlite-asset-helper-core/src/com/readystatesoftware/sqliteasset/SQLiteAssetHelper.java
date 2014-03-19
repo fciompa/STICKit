@@ -454,6 +454,7 @@ public class SQLiteAssetHelper extends SQLiteOpenHelper {
 		return null;
 	}
 	
+	@SuppressWarnings("resource")
 	private String convertStreamToString(InputStream is) { 
 	    return new Scanner(is).useDelimiter("\\A").next();
 	}

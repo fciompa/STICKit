@@ -199,7 +199,9 @@ public class Sticker {
 		contentValues.put(context.getString(R.string.column_sticker_name_eng), mNameENG);
 		contentValues.put(context.getString(R.string.column_sticker_description_cz), mDescriptionCZ);
 		contentValues.put(context.getString(R.string.column_sticker_description_eng), mDescriptionENG);
-		contentValues.put(context.getString(R.string.column_sticker_image), mImage);
+		if (mImage != null){
+			contentValues.put(context.getString(R.string.column_sticker_image), mImage);
+		}
 		contentValues.put(context.getString(R.string.column_sticker_priceCZK), mPriceCZK);
 		contentValues.put(context.getString(R.string.column_sticker_priceEUR), mPriceEUR);
 		contentValues.put(context.getString(R.string.column_sticker_expedition_time), mExpeditionTime);

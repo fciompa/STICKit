@@ -112,6 +112,7 @@ public class UserDetailFragment  extends SherlockFragment{
 		Intent activityIntent = getActivity().getIntent();
 		if(activityIntent.hasExtra(Const.ARG_MAIL_TYPE)){
 			intent.putExtra(Const.ARG_MAIL_TYPE, activityIntent.getExtras().getInt(Const.ARG_MAIL_TYPE));
+			intent.putExtra(Const.ARG_ID, activityIntent.getExtras().getInt(Const.ARG_ID));
 		}
 		if(mUserData.isEmpty()){
 			Toast.makeText(getActivity(), R.string.user_toast_empty_email, Toast.LENGTH_LONG).show();

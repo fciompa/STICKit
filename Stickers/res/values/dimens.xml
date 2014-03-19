@@ -9,4 +9,7 @@
 	<dimen name="st_gallery_date_baground_width">100dp</dimen>
 	
 	<dimen name="st_gallery_sticker_title_baground_width">130dp</dimen>
+	
+	<dimen name="st_gallery_buy_width">60dp</dimen>
+	
 </resources>

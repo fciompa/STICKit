@@ -137,10 +137,10 @@ public class DbStickers extends SQLiteAssetHelper {
 
 	public Cursor fetchCategoryId(int id){
 		StringBuilder whereClause = new StringBuilder(mContext.getString(R.string.column_id)).append("=").append(id);
-		Cursor cursor = mDb.query(mStructure.getTable(R.string.table_category).getName(), null, whereClause.toString(), null, null, null, 
+		Cursor c = mDb.query(mStructure.getTable(R.string.table_category).getName(), null, whereClause.toString(), null, null, null, 
 				mStructure.getTable(R.string.table_category).getColumn(R.string.column_category_sequence).getName());
-		cursor.moveToFirst();
-		return cursor;
+		moveFirst(c);
+		return c;
 	}
 	
 	public long insertCategory(ContentValues values){
@@ -160,7 +160,7 @@ public class DbStickers extends SQLiteAssetHelper {
 	public Cursor fetchStickers(){
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_sticker).getName(), null, null, null, null, null, 
 				mStructure.getTable(R.string.table_sticker).getColumn(R.string.column_sticker_name_cz).getName());
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
@@ -168,7 +168,7 @@ public class DbStickers extends SQLiteAssetHelper {
 		StringBuilder whereClause = new StringBuilder(mContext.getString(R.string.column_id)).append("=").append(id);
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_sticker).getName(), null, whereClause.toString(), null, null, null, 
 				mStructure.getTable(R.string.table_sticker).getColumn(R.string.column_sticker_name_cz).getName());
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
@@ -177,7 +177,7 @@ public class DbStickers extends SQLiteAssetHelper {
 				R.string.column_sticker_featured).getName()).append(" = '1'");
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_sticker).getName(), null, whereClause.toString(), null, null, null, 
 				mStructure.getTable(R.string.table_sticker).getColumn(R.string.column_sticker_name_cz).getName()); 
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
@@ -186,7 +186,7 @@ public class DbStickers extends SQLiteAssetHelper {
 				R.string.column_sticker_popular).getName()).append(" = '1'");
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_sticker).getName(), null, whereClause.toString(), null, null, null, 
 				mStructure.getTable(R.string.table_sticker).getColumn(R.string.column_sticker_name_cz).getName());
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
@@ -195,7 +195,7 @@ public class DbStickers extends SQLiteAssetHelper {
 				R.string.column_sticker_new).getName()).append(" = '1'");
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_sticker).getName(), null, whereClause.toString(), null, null, null, 
 				mStructure.getTable(R.string.table_sticker).getColumn(R.string.column_sticker_name_cz).getName());
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
@@ -219,7 +219,7 @@ public class DbStickers extends SQLiteAssetHelper {
 		String whereClause = getWhereClauseStickersByCategory(categoryId);
 		String orderByClause = mStructure.getTable(R.string.table_sticker).getColumn(R.string.column_sticker_name_cz).getName();
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_sticker).getName(), null, whereClause, null, null, null, orderByClause); 
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
@@ -232,7 +232,7 @@ public class DbStickers extends SQLiteAssetHelper {
 		
 		String orderByClause = mStructure.getTable(R.string.table_sticker).getColumn(R.string.column_sticker_name_cz).getName();
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_sticker).getName(), null, whereClause, null, null, null, orderByClause);
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
@@ -245,7 +245,7 @@ public class DbStickers extends SQLiteAssetHelper {
 		
 		String orderByClause = mStructure.getTable(R.string.table_sticker).getColumn(R.string.column_sticker_name_cz).getName();
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_sticker).getName(), null, whereClause, null, null, null, orderByClause);
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
@@ -258,7 +258,7 @@ public class DbStickers extends SQLiteAssetHelper {
 		
 		String orderByClause = mStructure.getTable(R.string.table_sticker).getColumn(R.string.column_sticker_name_cz).getName();
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_sticker).getName(), null, whereClause.toString(), null, null, null, orderByClause);
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 
@@ -279,14 +279,14 @@ public class DbStickers extends SQLiteAssetHelper {
 	public Cursor fetchStickerCategory(){
 		StringBuilder orderByClause = new StringBuilder(mContext.getString(R.string.column_id));
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_stickercategory).getName(), null, null, null, null, null, orderByClause.toString());
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
 	public Cursor fetchStickerCategoryId(int id){
 		StringBuilder whereClause = new StringBuilder(mContext.getString(R.string.column_id)).append("=").append(id);
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_stickercategory).getName(), null, whereClause.toString(), null, null, null, null);
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
@@ -308,17 +308,17 @@ public class DbStickers extends SQLiteAssetHelper {
 		//StringBuilder orderByClause = new StringBuilder(mContext.getString(R.string.column_visualization_name));
 		StringBuilder orderByClause = new StringBuilder(mContext.getString(R.string.column_id)).append(" desc");
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_visualization).getName(), null, null, null, null, null, orderByClause.toString());
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
 	
 	public Cursor fetchVisualizationId(int id){
 		StringBuilder whereClause = new StringBuilder(mContext.getString(R.string.column_id)).append("=").append(id);
 		Cursor c = mDb.query(mStructure.getTable(R.string.table_visualization).getName(), null, whereClause.toString(), null, null, null, null);
-		c.moveToFirst();
+		moveFirst(c);
 		return c;
 	}
-	
+
 	public long insertVisualization(ContentValues values){
 		return mDb.insert(mStructure.getTable(R.string.table_visualization).getName(), null, values);
 	}
@@ -331,6 +331,11 @@ public class DbStickers extends SQLiteAssetHelper {
 	public int deleteVisualization(int id){
 		StringBuilder whereClause = new StringBuilder(mContext.getString(R.string.column_id)).append(" = ").append(id);
 		return mDb.delete(mStructure.getTable(R.string.table_visualization).getName(), whereClause.toString(), null);
+	}
+	private void moveFirst(Cursor c) {
+		if(c.getCount() > 0){
+			c.moveToFirst();
+		}
 	}
 }
 

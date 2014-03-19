@@ -724,6 +724,7 @@ public class PhotoViewAttacher implements View.OnTouchListener, VersionedGesture
 	 * @param d
 	 *            - Drawable being displayed
 	 */
+	@SuppressWarnings("incomplete-switch")
 	private void updateBaseMatrix(Drawable d) {
 		if (null == d) {
 			return;

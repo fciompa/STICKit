@@ -12,7 +12,8 @@
         android:orientation="horizontal"
 		android:background="@drawable/st_new_background_land" 
 		android:baselineAligned="false"
-        android:visibility="gone">
+        android:visibility="gone" >
+		<!--  -->
 		
 		<!-- first main row-->
         <LinearLayout
@@ -65,8 +66,10 @@
 						        android:id="@+id/visualization_new_take_photo"
 						        android:layout_width="wrap_content"
 						        android:layout_height="wrap_content"
-						        android:background="@drawable/st_new_photo"
-						        android:contentDescription="@string/visualization_detail_description_take_background"/>
+						        android:src="@drawable/st_new_photo"
+						        android:contentDescription="@string/visualization_detail_description_take_background"
+						        android:padding="10dp"
+			                    style="@android:style/Widget.ActionButton"/>
 		                </LinearLayout>
 					    
 		                <LinearLayout 
@@ -81,8 +84,10 @@
 						        android:id="@+id/visualization_new_choice_gallery"
 						        android:layout_width="wrap_content"
 						        android:layout_height="wrap_content"
-						        android:background="@drawable/st_new_gallery"
-						        android:contentDescription="@string/visualization_detail_description_take_background"/>
+						        android:src="@drawable/st_new_gallery"
+						        android:contentDescription="@string/visualization_detail_description_take_background"
+						        android:padding="10dp"
+			                    style="@android:style/Widget.ActionButton"/>
 						</LinearLayout>
 	
 		                <LinearLayout 
@@ -153,8 +158,10 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 					android:layout_gravity="center_horizontal"
-			        android:background="@drawable/st_new_sticker"
-			        android:contentDescription="@string/visualization_detail_description_choice_sticker"/>
+			        android:src="@drawable/st_new_sticker"
+			        android:contentDescription="@string/visualization_detail_description_choice_sticker"
+			        android:padding="10dp"
+			        style="@android:style/Widget.ActionButton"/>
 	
 				<ImageView
 				    android:id="@+id/visualization_new_image_sticker"
@@ -181,8 +188,13 @@
 		        android:text="@string/visualization_detail_description_edit"
 		        android:textColor="@android:color/white"
 		        android:gravity="center_vertical"
+		        
 		        android:paddingLeft="30dp"
-		        android:background="@drawable/st_new_edit2"/>
+		        style="@android:style/Widget.ActionButton"
+		        android:background="@drawable/st_new_edit2"
+		        
+		        />
+		    <!-- android:background="@drawable/st_new_edit2" -->
 		</LinearLayout>
 	</LinearLayout>        
     </LinearLayout>
@@ -240,7 +252,27 @@
 									            	            
 	        </LinearLayout>
 	        	        
-	        		    	
+	        <LinearLayout 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:layout_alignParentRight="true"
+	            android:layout_alignTop="@+id/visualization_edit_panel_image_image">
+
+	            <ImageButton
+			        android:id="@+id/visualization_edit_panel_send_order"
+			        android:layout_width="60dp"
+			        android:layout_height="48dp"
+			        android:layout_alignParentRight="true"
+		        	android:layout_alignParentBottom="true"
+		        	android:padding="0dp"
+		        	android:layout_margin="0dp"
+			        android:scaleType="centerInside"
+			        android:src="@drawable/buy"
+			        android:focusable="false"
+		        	android:focusableInTouchMode="false"/>
+	            	            				
+	        </LinearLayout>	        		    	
 
             <EditText
                 android:id="@+id/visualization_edit_panel_image_update_date"
@@ -450,22 +482,31 @@
 	                android:id="@+id/visualization_edit_panel_control_perspective_increase"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:background="@drawable/st_edit_perspective_increase"
-	                android:contentDescription="@string/visualization_detail_description_perspective_decrease"/>
+	                android:src="@drawable/st_edit_perspective_increase"
+	                android:contentDescription="@string/visualization_detail_description_perspective_decrease"
+					android:layout_margin="0dp"
+                    android:padding="0dp"
+                    style="@android:style/Widget.ActionButton"/>
                 
 	            <ImageButton
 	                android:id="@+id/visualization_edit_panel_control_perspective_decrease"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:background="@drawable/st_edit_perspective_decrease"
-	                android:contentDescription="@string/visualization_detail_description_perspective_increase"/>
+	                android:src="@drawable/st_edit_perspective_decrease"
+	                android:contentDescription="@string/visualization_detail_description_perspective_increase"
+					android:layout_margin="0dp"
+                    android:padding="0dp"
+                    style="@android:style/Widget.ActionButton"/>
                 
 	            <ImageButton
 	                android:id="@+id/visualization_edit_panel_control_flip"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:background="@drawable/st_edit_flip"
-	                android:contentDescription="@string/visualization_detail_description_flip"/>
+	                android:src="@drawable/st_edit_flip"
+	                android:contentDescription="@string/visualization_detail_description_flip"
+					android:layout_margin="0dp"
+                    android:padding="0dp"
+                    style="@android:style/Widget.ActionButton"/>
 			</LinearLayout>
                 
             <!-- prostřední řada -->
@@ -481,8 +522,11 @@
 	                android:id="@+id/visualization_edit_panel_control_up"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:background="@drawable/st_edit_move_up"
-	                android:contentDescription="@string/visualization_detail_description_up"/>
+	                android:src="@drawable/st_edit_move_up"
+	                android:contentDescription="@string/visualization_detail_description_up"
+					android:layout_margin="0dp"
+                    android:padding="0dp"
+                    style="@android:style/Widget.ActionButton"/>
 			
 	             <!-- sipky prostredni rada -->
 	            <LinearLayout
@@ -494,21 +538,30 @@
 		                android:id="@+id/visualization_edit_panel_control_left"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
-		                android:background="@drawable/st_edit_move_left"
-		                android:contentDescription="@string/visualization_detail_description_perspective_increase"/>
+		                android:src="@drawable/st_edit_move_left"
+		                android:contentDescription="@string/visualization_detail_description_perspective_increase"
+						android:layout_margin="0dp"
+	                    android:padding="0dp"
+	                    style="@android:style/Widget.ActionButton"/>
 		            
 		           <ImageButton
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
-		                android:background="@drawable/st_edit_empty"
-		                android:contentDescription="@null" />
+		                android:src="@drawable/st_edit_empty"
+		                android:contentDescription="@null"
+						android:layout_margin="0dp"
+	                    android:padding="0dp"
+	                    style="@android:style/Widget.ActionButton"/>
 		           
 		            <ImageButton
 		                android:id="@+id/visualization_edit_panel_control_right"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
-		                android:background="@drawable/st_edit_move_right"
-		                android:contentDescription="@string/visualization_detail_description_perspective_decrease"/>
+		                android:src="@drawable/st_edit_move_right"
+		                android:contentDescription="@string/visualization_detail_description_perspective_decrease"
+						android:layout_margin="0dp"
+	                    android:padding="0dp"
+	                    style="@android:style/Widget.ActionButton"/>
 	            </LinearLayout>			
 			
 				<!-- sipky dolni rada -->
@@ -516,8 +569,11 @@
 	                android:id="@+id/visualization_edit_panel_control_down"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:background="@drawable/st_edit_move_down"
-	                android:contentDescription="@string/visualization_detail_description_down"/>
+	                android:src="@drawable/st_edit_move_down"
+	                android:contentDescription="@string/visualization_detail_description_down"
+					android:layout_margin="0dp"
+                    android:padding="0dp"
+                    style="@android:style/Widget.ActionButton"/>
             
 			</LinearLayout>
 			
@@ -533,22 +589,31 @@
                     android:id="@+id/visualization_edit_panel_control_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/st_edit_choice_color"
-                    android:contentDescription="@string/visualization_detail_description_color"/>
+                    android:src="@drawable/st_edit_choice_color"
+                    android:contentDescription="@string/visualization_detail_description_color"
+					android:layout_margin="0dp"
+                    android:padding="0dp"
+                    style="@android:style/Widget.ActionButton"/>
 	                
 	            <ImageButton
 	                android:id="@+id/visualization_edit_panel_control_size_increase"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:background="@drawable/st_edit_size_increase"
-	                android:contentDescription="@string/visualization_detail_description_size_increase"/>
+	                android:src="@drawable/st_edit_size_increase"
+	                android:contentDescription="@string/visualization_detail_description_size_increase"
+					android:layout_margin="0dp"
+                    android:padding="0dp"
+                    style="@android:style/Widget.ActionButton"/>
                 
 	            <ImageButton
 	                android:id="@+id/visualization_edit_panel_control_size_decrease"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:background="@drawable/st_edit_size_decrease"
-	                android:contentDescription="@string/visualization_detail_description_size_decrease"/>
+	                android:src="@drawable/st_edit_size_decrease"
+	                android:contentDescription="@string/visualization_detail_description_size_decrease"
+					android:layout_margin="0dp"
+                    android:padding="0dp"
+                    style="@android:style/Widget.ActionButton"/>
 	            
 			</LinearLayout>
 		</LinearLayout>

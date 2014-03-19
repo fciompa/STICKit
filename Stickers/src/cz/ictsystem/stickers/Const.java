@@ -45,6 +45,6 @@ public class Const {
 	public static final String STUP_PROVIDER_AUTHORITY = "cz.ictsystem.stickers.data.StubProvider";
 	public static final String ACCOUNT_TYPE = "cz.ictsystem.stickers";
     public static final String ACCOUNT = "dummyaccount";
-    public static final long SYNC_INTERVAL = 24*60*60;//interval in seconds
+    public static final long SYNC_INTERVAL = 7*24*60*60;//interval in seconds
 	
 }
